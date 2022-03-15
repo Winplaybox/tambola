@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/winplaybox/tambola.git"
+    "url": "git+https://github.com/Winplaybox/tambola.git"
   },
-  "author": "winplaybox",
+  "author": "Winplaybox",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/winplaybox/tambola/issues"
+    "url": "https://github.com/Winplaybox/tambola/issues"
   },
-  "homepage": "https://github.com/winplaybox/tambola#readme",
+  "homepage": "https://github.com/Winplaybox/tambola#readme",
   "dependencies": {
     "express": "^4.17.1",
     "http": "0.0.1-security",
