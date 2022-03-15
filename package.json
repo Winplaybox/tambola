@@ -19,7 +19,7 @@
   "bugs": {
     "url": "https://github.com/Winplaybox/tambola/issues"
   },
-  "homepage": "https://github.com/Winplaybox/tambola#readme",
+  "homepage": ".",
   "dependencies": {
     "express": "^4.17.1",
     "http": "0.0.1-security",
