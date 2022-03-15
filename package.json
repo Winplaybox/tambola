@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "heroku-postbuild": "cd frontend && npm i && npm run build && cd ../landing && npm i && npm run css-build",
     "start": "node app.js",
-    "dev-start": "cd frontend && npm i && npm run build && cd ../ && nodemon app.js"
+    "dev-start": "cd frontend && npm i && npm run build && cd ../ && nodemon app.js",
+    "build-start": "cd frontend && npm i && npm run build && cd ../landing && npm i && npm run css-build"
   },
   "repository": {
     "type": "git",
