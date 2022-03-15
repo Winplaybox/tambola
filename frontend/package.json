@@ -23,7 +23,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && rm -r ../build; mv build ../build",
+    "build": "rd /s/q \"build\" 2> nul & react-scripts build && md \"build\" && move \"build\" \"build\"",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

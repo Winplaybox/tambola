@@ -2,7 +2,7 @@
   "name": "tambola",
   "version": "0.0.1",
   "description": "Tambola Game",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "heroku-postbuild": "cd frontend && npm i && npm run build && cd ../landing && npm i && npm run css-build",
@@ -22,7 +22,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "http": "0.0.1-security",
-    "socket.io": "^2.4.0"
+    "socket.io": "^4.4.1"
   },
   "devDependencies": {
     "@types/socket.io-client": "^1.4.32",
