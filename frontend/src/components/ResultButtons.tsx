@@ -10,6 +10,7 @@ function ResultButtons(props: ResultButtonsProps) {
   return (
     <div className="result-buttons">
       <button
+        className="btn btn__primary"
         onClick={() => {
           props.resultCallback(props.win);
         }}
@@ -17,6 +18,7 @@ function ResultButtons(props: ResultButtonsProps) {
         {props.win}
       </button>
       <button
+        className="btn"
         onClick={() => {
           props.resultCallback(props.bogey);
         }}

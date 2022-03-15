@@ -44,9 +44,9 @@ class Snackbar extends Component<SnackbarProps, SnackbarState> {
       <div className={animation}>
         <div className="snackbar">
           <p className="snackbar-text">{this.props.message}</p>
-          <button className="snackbar-action" onClick={this.handleCopyUrl}>
-            {this.props.actionText}
-          </button>
+            <button className="snackbar-action btn btn__primary" onClick={this.handleCopyUrl}>
+              {this.props.actionText}
+            </button>
         </div>
       </div>
     );

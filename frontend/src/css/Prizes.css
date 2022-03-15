@@ -2,12 +2,19 @@
   margin-top: 1rem;
   /* this is just to make page a little bit scrollable */
   margin-bottom: 5rem;
+  box-shadow: 0.8rem 0.8rem 1.4rem #c8d0e7, -0.2rem -0.2rem 1.8rem #fff;
+    border-radius: 10px;
+    color: #000;
+    background-color: rgb(228 235 245/80%);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    height: 100%;
 }
 
 table.prizes {
   width: 100%;
   border-spacing: 0.75rem;
-  color: #a89e8a;
+  color: #000000;
 }
 
 table.prizes tr {
@@ -21,7 +28,7 @@ table.prizes td.award {
 
 table.prizes td.left {
   width: 20%;
-  color: #ffcb36;
+  color: #000000;
 }
 
 table.prizes td.won-by {
@@ -34,9 +41,9 @@ table.prizes > tr > th {
   padding: 0;
   height: 3rem;
   background-color: #374051;
-  color: white;
+  color: 000000;
 }
 
 .zero-awards-left {
-  color: #ff7c35;
+  color: #000000;
 }

@@ -3,15 +3,18 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  left: 0.75rem;
-  right: 0.75rem;
-  border-radius: 10px;
-  background: #ffcb36;
+  left: 0;
+  right: 0;
+  border-radius: 1rem;
+  background: #e4ebf5;
+  box-shadow: 0.8rem 0.8rem 1.4rem #c8d0e7, -0.2rem -0.2rem 1.8rem #fff;
+  padding: 1rem;
 }
 
 .snackbar-text {
   color: #000000;
 }
 .snackbar-action {
-  width: 30%;
+  width: 20%;
+  height: 2.5rem;
 }

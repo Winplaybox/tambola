@@ -8,7 +8,7 @@ interface AppState {
   socket: any;
 }
 
-interface AppProps {}
+interface AppProps { }
 
 class App extends Component<AppProps, AppState> {
   constructor(props: any) {
@@ -16,11 +16,25 @@ class App extends Component<AppProps, AppState> {
     this.state = {
       socket: io(),
     };
+
+    console.log(this.state.socket)
+  }
+  loopfun=(val:number)=>{
+    const array = [];
+    for(let i=0;i<val;i++){
+      array.push(<li></li>)
+    }
+    return array;
   }
 
   render() {
     return (
       <>
+        <div className="area" >
+          <ul className="circles">
+            {this.loopfun(10)}
+          </ul>
+        </div >
         <div className="App">
           <EnterName socket={this.state.socket} />
         </div>

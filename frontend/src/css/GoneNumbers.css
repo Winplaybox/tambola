@@ -1,18 +1,24 @@
 div#gone-numbers-menu {
-  margin-bottom: 1rem;
   background-color: #070a0f;
-  overflow: auto;
+  overflow-y: hidden;
+  overflow-x: auto;
   white-space: nowrap;
   display: none;
+  box-shadow: 0.8rem 0.8rem 1.4rem #c8d0e7, -0.2rem -0.2rem 1.8rem #fff;
+  color: #000;
+  background-color: rgb(228 235 245/80%);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
 }
 
 div#gone-numbers-menu > p {
-  color: #5d6c89;
+  color: #000000;
   text-align: center;
   padding: 1rem;
   display: inline-block;
   margin: 0;
   font-size: 2rem;
+  width: 100%;
 }
 
 #gone-numbers-button {
@@ -22,4 +28,13 @@ div#gone-numbers-menu > p {
 
 .show {
   display: block;
+}
+
+.gone-numbers-container {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }

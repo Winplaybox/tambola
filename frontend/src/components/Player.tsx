@@ -74,7 +74,9 @@ class Player extends Component<PlayerProps, PlayerState> {
       // This css class changes the opacity and disable all the clicks.
       // This is different from how it is handled in Notifications component
       gameEndedCssClass = "game-ended no-click";
-      gameOverP = <p className="game-over animated rubberBand">Game Over</p>;
+      gameOverP = <div className="gameovermain"><p className="game-over animated rubberBand">Game Over</p> <a href="/" style={{ color: "white" }}>
+      <button className="btn btn__primary">New Game</button></a></div>
+    ;
     }
     if (this.props.type === "PC") {
       mainComponent = (

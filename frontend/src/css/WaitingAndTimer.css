@@ -1,6 +1,7 @@
 p.waiting {
   font-size: 1rem;
-  color: #ffcb36;
+  color: #000000;
+  margin-top: 1rem;
 }
 
 .game-over {
@@ -10,6 +11,6 @@ p.waiting {
 }
 
 .timer {
-  color: #ff7c35;
+  color: #000000;
   padding-left: 3px;
 }

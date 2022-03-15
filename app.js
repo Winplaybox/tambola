@@ -15,7 +15,8 @@ const {
 
 const app = express();
 const server = http.createServer(app);
-var io = require("socket.io")(server, { pingTimeout: 240000 });
+var io = require("socket.io")(server, { pingTimeout: 240000,allowEIO3: true });
+
 
 io.on("connection", (socket) => {
   // joining a room

@@ -47,10 +47,11 @@ function ConfigTable(props: ConfigTableProps) {
               </td>
               <td className="cross-button">
                 <button
+                  className="btn"
                   type="button"
                   onClick={props.handleRemoveSpecificRow(idx)}
                 >
-                  X
+                  <svg xmlns="http://www.w3.org/2000/svg" className="ionicon s-ion-icon" viewBox="0 0 512 512"><path d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"></path></svg>
                 </button>
               </td>
             </tr>
@@ -58,10 +59,10 @@ function ConfigTable(props: ConfigTableProps) {
         </tbody>
       </table>
       <div className="buttons-container">
-        <button className="add-row" type="button" onClick={props.handleAddRow}>
+        <button className="add-row btn btn__primary" type="button" onClick={props.handleAddRow}>
           Add Award
         </button>
-        <button className="start-game" type="submit">
+        <button className="start-game btn" type="submit">
           Start Game
         </button>
       </div>

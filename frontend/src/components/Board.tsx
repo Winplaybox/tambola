@@ -133,7 +133,7 @@ class Board extends Component<BoardProps, BoardState> {
     return (
       <div className="board-component-main">
         <button
-          className={"new-number"}
+          className={"new-number btn btn__primary"}
           onClick={() => {
             newNumber = this.state.shuffledBoardNumbers[this.state.goneNumbers];
             this.handleNewNumber(newNumber);

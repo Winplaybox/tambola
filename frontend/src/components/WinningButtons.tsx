@@ -7,7 +7,7 @@ interface WinningButtonsProps {
   winCallBack: (callWinType: string) => void;
 }
 
-interface WinningButtonsState {}
+interface WinningButtonsState { }
 
 class WinningButtons extends Component<
   WinningButtonsProps,
@@ -21,6 +21,7 @@ class WinningButtons extends Component<
     for (let i = 0; i < this.props.awards.length; ++i) {
       this.awardButtons.push(
         <button
+          className="btn btn__primary"
           key={i}
           onClick={() => {
             this.props.winCallBack(this.props.awards[i].nameAward);

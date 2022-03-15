@@ -5,7 +5,7 @@ interface GoneNumbersProps {
   numbers: Array<number>;
 }
 
-interface GoneNumbersState {}
+interface GoneNumbersState { }
 
 class GoneNumbers extends Component<GoneNumbersProps, GoneNumbersState> {
   constructor(props: GoneNumbersProps) {
@@ -20,9 +20,11 @@ class GoneNumbers extends Component<GoneNumbersProps, GoneNumbersState> {
     for (let i = this.props.numbers.length - 1; i >= 0; --i) {
       mainComp.push(<p key={i}>{this.props.numbers[i]}</p>);
     }
+
     return (
       <div className="gone-numbers-container">
         <button
+          className={`btn ${mainComp.length > -1 ? 'fillmaincomp' : 'emptymaincomp'}`}
           id="gone-numbers-button"
           onClick={() => {
             let goneNumbers = document.getElementById("gone-numbers-menu");
@@ -38,7 +40,7 @@ class GoneNumbers extends Component<GoneNumbersProps, GoneNumbersState> {
               } else {
                 goneNumbers.style.display = "block";
                 goneNumbers.classList.add("animated", "fadeIn");
-                button.innerHTML = "X";
+                button.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" className="ionicon s-ion-icon" viewBox="0 0 512 512"><path d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"></path></svg>`;
               }
             }
           }}

@@ -27,13 +27,10 @@ p.award-status {
   }
   div.prizes-container {
     width: 40%;
-    border-left: 1px solid #374051;
-    margin-top: 0;
   }
 
   div.everything-but-prizes {
     width: 60%;
-    border-right: 1px solid #374051;
   }
 
   input#enter-name {
@@ -49,4 +46,11 @@ p.award-status {
   p.enter-name-question {
     font-size: 2rem;
   }
+}
+
+.config-container {
+  box-shadow: 0.8rem 0.8rem 1.4rem #c8d0e7, -0.2rem -0.2rem 1.8rem #ffffff;
+  backdrop-filter: blur(8px);
+  padding: 3rem;
+  background: rgb(228 235 245 / 72%);
 }

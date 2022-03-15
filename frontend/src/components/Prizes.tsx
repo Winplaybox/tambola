@@ -155,7 +155,6 @@ class Prizes extends Component<PrizesProps, PrizesState> {
     return (
       <div className="prizes-container">
         <p className="award-status">Award Status</p>
-        <hr />
         <table className="prizes">
           <tr>
             <th className="award">Award</th>

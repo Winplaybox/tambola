@@ -54,7 +54,8 @@ class EnterName extends Component<EnterNameProps, EnterNameState> {
       }
       let submitButton = (
         <div style={myStyles}>
-          <button onClick={this.handleSubmit}>OK</button>
+            <button className="btn btn__primary" onClick={this.handleSubmit}><p>OK</p></button>
+
         </div>
       )
 

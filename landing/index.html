@@ -1,88 +1,67 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta
-      name="description"
-      content="An online multiplayer web tambola, also called housie, with no sign in and no download. Create room and share the link with your friends."
-    />
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Tambola Online</title>
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="./images/apple-touch-icon.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="./images/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="./images/favicon-16x16.png"
-    />
-    <link rel="manifest" href="./images/site.webmanifest" />
-    <link rel="stylesheet" href="./css/mystyles.css" />
-    <script
-      defer
-      src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"
-    ></script>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=UA-161392485-1"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
 
-      gtag("config", "UA-161392485-1");
-    </script>
-  </head>
+<head>
+  <meta name="description"
+    content="An online multiplayer web tambola, also called housie, with no sign in and no download. Create room and share the link with your friends." />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Housie - winplaybox</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="./images/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16x16.png" />
+  <link rel="manifest" href="./images/site.webmanifest" />
+  <link rel="stylesheet" href="./css/mystyles.css" />
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-161392485-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
 
-  <body>
-    <section class="hero is-large">
-      <div class="illustration-container">
-        <header class="section">
-          <div class="container">
-            <div class="brand">
-              <h1>
-                <a href="/">
-                  <img src="./images/logo.svg" alt="Tambola" />
-                </a>
-              </h1>
-            </div>
-          </div>
-        </header>
-        <div>
-          <div class="container">
-            <div class="hero-text-container">
-              <h1 class="title largest-text">
-                Tambola
-              </h1>
-              <h2 class="subtitle is-size-1">
-                Anywhere Anytime
-              </h2>
-              <p class="is-size-3 sub-sub-heading">
-                Same Tambola fun with your loved ones on your browser. Create a
-                game and then share link to play together.
-              </p>
-              <button class="button main-button pulse" id="generate-new-room">
-                Create Game
-              </button>
-            </div>
-          </div>
-        </div>
+    gtag("config", "UA-161392485-1");
+  </script>
+</head>
+
+<body>
+  <section class="hero is-large">
+    <div class="area">
+      <ul class="circles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+    <div class="container">
+      <div class="hero-text-container">
+        <h1 class="title largest-text">
+          Housie
+        </h1>
+        <h2 class="subtitle is-size-1">
+          Anywhere Anytime
+        </h2>
+        <p class="is-size-3 sub-sub-heading">
+          Same Housie fun with your loved ones on your browser. Create a
+          game and then share link to play together.
+        </p>
+          <button class="button main-button btn__primary pulse" id="generate-new-room">
+            <i class="faicon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M432 256c0 17.69-14.33 32.01-32 32.01H256v144c0 17.69-14.33 31.99-32 31.99s-32-14.3-32-31.99v-144H48c-17.67 0-32-14.32-32-32.01s14.33-31.99 32-31.99H192v-144c0-17.69 14.33-32.01 32-32.01s32 14.32 32 32.01v144h144C417.7 224 432 238.3 432 256z"/></svg></i>
+            Create Game
+          </button>
       </div>
-    </section>
-    <div class="container"><hr /></div>
-  </body>
-  <script src="js/main.js"></script>
+    </div>
+  </section>
+</body>
+<script src="js/main.js"></script>
+
 </html>

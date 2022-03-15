@@ -51,7 +51,7 @@ class Box extends Component<BoxProps, BoxState> {
   render() {
     let checkedCssClass = this.state.check ? "checked" : "unchecked";
     return (
-      <div className="box" onClick={this.clickHandler}>
+      <div className={`box ${this.state.check ? "boxchecked" : "boxunchecked"}`} onClick={this.clickHandler}>
         <div className={checkedCssClass}></div>
         <div className={checkedCssClass}></div>
         <p>{this.props.value === 0 ? "" : this.props.value}</p>

@@ -16,11 +16,15 @@ const customModalStyles = {
     bottom: "auto",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
-    backgroundColor: "#0e141f",
+    backgroundColor: "rgb(228 235 245 / 72%)",
+    padding: '4rem',
+    boxShadow: "0.8rem 0.8rem 1.4rem #c8d0e7, -0.2rem -0.2rem 1.8rem #ffffff",
+    border: 0
   },
   overlay: {
     backgroundColor: "rgba(255, 255, 255, 0.35)",
     transition: "all 1s",
+    backdropFilter: 'blur(8px)'
   },
 };
 
@@ -302,6 +306,14 @@ class Config extends Component<ConfigProps, ConfigState> {
     event.preventDefault();
   };
 
+  loopfun = (val: number) => {
+    const array = [];
+    for (let i = 0; i < val; i++) {
+      array.push(<li></li>)
+    }
+    return array;
+  }
+
   render() {
     // game is over if there is no host
     if (this.state.hostDisconnected) {
@@ -312,7 +324,7 @@ class Config extends Component<ConfigProps, ConfigState> {
             you want to play more.
           </h1>
           <a href="/" style={{ color: "white" }}>
-            <button>Back</button>
+            <button className="btn">Back</button>
           </a>
         </>
       );
@@ -332,7 +344,7 @@ class Config extends Component<ConfigProps, ConfigState> {
             :)
           </h1>
           <a href="/" style={{ color: "white" }}>
-            <button>Home</button>
+            <div className="btn"><button>Home</button></div>
           </a>
         </>
       );
@@ -358,7 +370,7 @@ class Config extends Component<ConfigProps, ConfigState> {
 
       mainComponent = (
         <div className="config-container">
-          <Walkthrough playerType="Host" type="config" runWalkthrough={this.state.runWalkthrough}/>
+          <Walkthrough playerType="Host" type="config" runWalkthrough={this.state.runWalkthrough} />
           <Snackbar
             message="Share this 'join link' with other players"
             actionText="Copy Link"
@@ -371,22 +383,32 @@ class Config extends Component<ConfigProps, ConfigState> {
             }}
             initiallyHidden={this.hideToastInitially}
           />
-          <Modal isOpen={this.state.isModalOpen} style={customModalStyles}>
-            <h3>Some players are still not ready.</h3>
-            <h3>Are you sure you want to start the game?</h3>
-            <div className="modal-buttons">
-              <button onClick={this.handlleHostConfigDone}>Yes</button>
-              <button
-                onClick={() => {
-                  this.setState({ isModalOpen: false });
-                }}
-              >
-                No
-              </button>
-            </div>
-          </Modal>
+          {
+            this.state.isModalOpen ? <div modal-status={this.state.watchTutorialModal} className="modalpoppup">
+              <div className="area" >
+                <ul className="circles">
+                  {this.loopfun(10)}
+                </ul>
+              </div >
+              <div className="modalpoppupcontent">
+                <h3 style={{ color: "#000000" }}>Some players are still not ready.</h3>
+                <h3 style={{ color: "#000000" }}>Are you sure you want to start the game?</h3>
+                <div className="modal-buttons">
+                  <button style={{ margin: 5 }} className="btn btn__primary" onClick={this.handlleHostConfigDone}>Yes</button>
+                  <button
+                    style={{ margin: 5 }}
+                    className="btn"
+                    onClick={() => {
+                      this.setState({ isModalOpen: false });
+                    }}
+                  >
+                    No
+                  </button>
+                </div>
+              </div>
+            </div> : null
+          }
           <h1 className="host-configuration">Game Setup</h1>
-          <hr />
           <ConfigTable
             awards={this.state.awards}
             handleChangeHost={this.handleChangeHost}
@@ -403,9 +425,8 @@ class Config extends Component<ConfigProps, ConfigState> {
       //    Number of Tickets
       mainComponent = (
         <div className="config-container">
-          <Walkthrough playerType="PC" type="config" runWalkthrough={this.state.runWalkthrough}/>
+          <Walkthrough playerType="PC" type="config" runWalkthrough={this.state.runWalkthrough} />
           <h1 className="pc-configuration">Player Setup</h1>
-          <hr />
           <form onSubmit={this.handleSubmit}>
             <table className="config-table" id="pc-config-table">
               <tbody>
@@ -423,9 +444,9 @@ class Config extends Component<ConfigProps, ConfigState> {
                   </td>
                 </tr>
                 <tr>
-                  <td>Waiting for host to start the game</td>
+                  <td className="waiting-message-tickets">Waiting for host to start the game</td>
                   <td>
-                    <button className="ready" type="submit">
+                    <button className="ready btn btn__primary" type="submit">
                       Ready
                     </button>
                   </td>
@@ -439,24 +460,38 @@ class Config extends Component<ConfigProps, ConfigState> {
     }
     return (
       <>
+
         {mainComponent}
-        <Modal isOpen={this.state.watchTutorialModal} style={customModalStyles}>
-          <h3>Would you like to watch tutorial?</h3>
-          <div className="modal-buttons">
-            <button onClick={() => {
-              this.setState({runWalkthrough: true, watchTutorialModal: false})
-              console.log("clicked yes");}
-              }>Yes</button>
-            <button
-              onClick={() => {
-                console.log("clicked No");
-                this.setState({ runWalkthrough: false, watchTutorialModal: false });
-              }}
-            >
-              No
-            </button>
-          </div>
-        </Modal>
+        {
+          this.state.watchTutorialModal ? <div modal-status={this.state.watchTutorialModal} className="modalpoppup">
+            <div className="area" >
+              <ul className="circles">
+                {this.loopfun(10)}
+              </ul>
+            </div >
+            <div className="modalpoppupcontent">
+              <h3 style={{ color: "#000000" }}>Would you like to watch tutorial?</h3>
+              <div className="modal-buttons">
+                <button style={{ margin: 5 }} className="btn btn__primary" onClick={() => {
+                  this.setState({ runWalkthrough: true, watchTutorialModal: false })
+                  console.log("clicked yes");
+                }
+                }>Yes</button>
+                <button
+                  style={{ margin: 5 }}
+                  className="btn"
+                  onClick={() => {
+                    console.log("clicked No");
+                    this.setState({ runWalkthrough: false, watchTutorialModal: false });
+                  }}
+                >
+                  No
+                </button>
+              </div>
+            </div>
+          </div> : null
+        }
+
       </>
     );
   }
