@@ -15,7 +15,7 @@ const {
 
 const app = express();
 const server = http.createServer(app);
-var io = require("socket.io")(server, { pingTimeout: 240000,allowEIO3: true });
+var io = require("socket.io")(server, { pingTimeout: 240000});
 
 
 io.on("connection", (socket) => {
