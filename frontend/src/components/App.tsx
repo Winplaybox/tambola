@@ -27,6 +27,11 @@ class App extends Component<AppProps, AppState> {
     return array;
   }
 
+  componentDidMount() {
+    window.addEventListener('contextmenu', function (window) { window.preventDefault(); });
+    window.addEventListener('dragover', function (e) { e.preventDefault(); }, false);
+  }
+
   render() {
     return (
       <>
