@@ -51,13 +51,10 @@ window.onload = function () {
     location.href = location.href + uniqueRoomId;
   };
 
-  if (window && window.parent) {
-    window.parent.postMessage({
-      message: JSON.stringify({
-        isPortrait: true
-      })
-    }, '*');
-  } else {
-    console.log('Your browser doesn\'t support web workers.');
-  }
+  window.ReactNativeWebView.postMessage((
+    JSON.stringify({
+      isPortrait:true
+    })
+  ));
+  
 };
