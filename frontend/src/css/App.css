@@ -780,7 +780,7 @@ table.ready-players {
   height: 5rem;
   border-radius: 10px;
   filter: blur(1px);
-  z-index: 100;
+  z-index: -1;
 }
 
 @keyframes waves {
