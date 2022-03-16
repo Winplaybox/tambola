@@ -20,7 +20,9 @@ class Snackbar extends Component<SnackbarProps, SnackbarState> {
   handleCopyUrl = () => {
     // Hacky way, but only way without using any external library
     var dummy = document.createElement("input"),
-      curUrl = window.location.href;
+      // curUrl = window.location.href;
+      curUrl = window.location.pathname.split('/game/')[1];
+    // var id = curUrl.substring(curUrl.lastIndexOf('/') + 1);
 
     document.body.appendChild(dummy);
     dummy.value = curUrl;

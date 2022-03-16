@@ -18,7 +18,6 @@ div#gone-numbers-menu > p {
   display: inline-block;
   margin: 0;
   font-size: 2rem;
-  width: 100%;
 }
 
 #gone-numbers-button {
@@ -37,4 +36,5 @@ div#gone-numbers-menu > p {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  margin-top: 2rem;
 }

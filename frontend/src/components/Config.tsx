@@ -318,15 +318,15 @@ class Config extends Component<ConfigProps, ConfigState> {
     // game is over if there is no host
     if (this.state.hostDisconnected) {
       return (
-        <>
+        <div className="nohostleft">
           <h1 className="host-configuration">
             Host left the game. Please close this tab. Generate a new room if
             you want to play more.
           </h1>
-          <a href="/" style={{ color: "white" }}>
+          <a href="/" className="linkbtn">
             <button className="btn">Back</button>
           </a>
-        </>
+        </div>
       );
     }
 
@@ -337,16 +337,16 @@ class Config extends Component<ConfigProps, ConfigState> {
       (this.state.readyHost && !this.state.readyClient)
     ) {
       return (
-        <>
+        <div className="gamestartedplaynext">
           <h1 className="host-configuration">
             This game was started without you. You can play in the next game.
             Meanwhile you can go back to the home screen and play another game
             :)
           </h1>
-          <a href="/" style={{ color: "white" }}>
-            <div className="btn"><button>Home</button></div>
+          <a href="/" className="linkbtn">
+            <button className="btn">Home</button>
           </a>
-        </>
+        </div>
       );
     }
 
@@ -372,8 +372,8 @@ class Config extends Component<ConfigProps, ConfigState> {
         <div className="config-container">
           <Walkthrough playerType="Host" type="config" runWalkthrough={this.state.runWalkthrough} />
           <Snackbar
-            message="Share this 'join link' with other players"
-            actionText="Copy Link"
+            message="Share this 'join code' with other players"
+            actionText="Copy code"
           />
           <Toast
             message={"There are no players in the game right now"}

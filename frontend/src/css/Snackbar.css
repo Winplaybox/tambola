@@ -18,3 +18,10 @@
   width: 20%;
   height: 2.5rem;
 }
+
+
+@media only screen and (max-width: 961px) {
+  .snackbar-action {
+    width:10rem;
+  }
+}

@@ -12,7 +12,7 @@ import Timer from "./Timer";
 
 interface PcTicketProps {
   socket: any;
-
+  name:string;
   // awards coming for winning buttons
   awards: Award[];
 
@@ -78,7 +78,7 @@ class PcTicket extends Component<PcTicketProps, PcTicketState> {
 
     return (
       <div className="pc-ticket">
-        <NewNumber socket={this.props.socket} />
+        <NewNumber socket={this.props.socket} name={this.props.name} />
         {timer}
         <Waiting playerType="PC" socket={this.props.socket} />
         <div className="notification-parent">

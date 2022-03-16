@@ -36,3 +36,10 @@ input#enter-name {
   font-size: 1rem;
   text-align: left;
 }
+
+@media only screen and (max-width: 961px) {
+  .enter-name {
+    padding: 1rem;
+    border-radius: 1rem;
+  }
+}

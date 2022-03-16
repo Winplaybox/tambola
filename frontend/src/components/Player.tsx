@@ -75,19 +75,20 @@ class Player extends Component<PlayerProps, PlayerState> {
       // This is different from how it is handled in Notifications component
       gameEndedCssClass = "game-ended no-click";
       gameOverP = <div className="gameovermain"><p className="game-over animated rubberBand">Game Over</p> <a href="/" style={{ color: "white" }}>
-      <button className="btn btn__primary">New Game</button></a></div>
-    ;
+        <button className="btn btn__primary">New Game</button></a></div>
+        ;
     }
     if (this.props.type === "PC") {
       mainComponent = (
         <div className="everything-but-prizes">
-          <Walkthrough type="game" playerType="PC" runWalkthrough={this.props.runWalkthrough}/>
+          <Walkthrough type="game" playerType="PC" runWalkthrough={this.props.runWalkthrough} />
           <div className={gameEndedCssClass}>
             <PcTicket
               socket={this.props.socket}
               numHouses={this.props.numHouses}
               awards={this.props.awards}
               endGame={this.endGame}
+              name={this.props.name}
             />
           </div>
           {gameOverP}
@@ -96,10 +97,10 @@ class Player extends Component<PlayerProps, PlayerState> {
     } else if (this.props.type === "Host") {
       mainComponent = (
         <div className="everything-but-prizes">
-          <Walkthrough type="game" playerType="Host" runWalkthrough={this.props.runWalkthrough}/>
+          <Walkthrough type="game" playerType="Host" runWalkthrough={this.props.runWalkthrough} />
           <div className={gameEndedCssClass}>
-            <Board socket={this.props.socket} endGame={this.endGame}/>
-            <MultipleHostTicket socket={this.props.socket} showWalkthrough={this.props.runWalkthrough}/>
+            <Board socket={this.props.socket} endGame={this.endGame} />
+            <MultipleHostTicket socket={this.props.socket} showWalkthrough={this.props.runWalkthrough} />
           </div>
           {gameOverP}
         </div>

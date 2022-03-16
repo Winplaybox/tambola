@@ -17,6 +17,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-top: 1rem;
 }
 
 .box {
@@ -139,6 +140,8 @@ p.only-new-number-player {
   padding: 0;
   border: none;
   font-size: 3rem;
+  min-width: 42px;
+  min-height: 42px;
 }
 
 .config-table thead th {
@@ -209,6 +212,8 @@ div.board-line {
 
 div.new-number-host-container,
 div.new-number-player-container {
+  grid-row: 1/2;
+  grid-column: 1/2;
   display: inline-block;
   border: 0;
   border-radius: 10px;
@@ -657,7 +662,7 @@ table#pc-config-table {
 
 svg.ionicon.s-ion-icon {
   font-size: 15px;
-  width: 51px;
+  width: 30px;
 }
 .checkmark svg {
   width: 16px;
@@ -685,6 +690,7 @@ td.number-tickets,.waiting-message-tickets {
   padding-left: 1rem;
 }
 
+
 table.ready-players {
   box-shadow: inset 0.2rem 0.2rem 0.5rem #c8d0e7, inset -0.2rem -0.2rem 0.5rem #fff;
   border-radius: 1rem;
@@ -706,4 +712,131 @@ table.ready-players {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+.homeclick {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background: #6d5dfc;
+  box-shadow: inset 0.2rem 0.2rem 1rem #8abdff, inset -0.2rem -0.2rem 1rem #5b0eeb, 0.3rem 0.3rem 0.6rem #c8d0e7, -0.2rem -0.2rem 0.5rem #ffffff;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+
+.homeclick a {
+  color: #000000;
+  text-decoration: none;
+}
+
+.homeclick a svg {
+  width: 30px;
+  fill: #fff;
+}
+
+.usernamehead {
+  font-size: 2rem;
+  margin: 1rem 0 0;
+  color: #000;
+}
+.wrapgennumber {
+  grid-column: 2/3;
+  grid-row: 4/6;
+  width: 100%;
+  height: 100%;
+  justify-self: center;
+  border-radius: 1rem;
+  display: grid;
+  grid-template-rows: 1fr;
+  justify-items: center;
+  align-items: center;
+}
+
+.circle__back-1.paused {
+  animation-play-state: paused;
+}
+.circle__back-2.paused {
+  animation-play-state: paused;
+}
+.circle__back-1 {
+  box-shadow: 0.4rem 0.4rem 0.8rem #c8d0e7, -0.4rem -0.4rem 0.8rem #ffffff;
+  background: linear-gradient(to bottom right, #c8d0e7 0%, #ffffff 100%);
+  animation: waves 4s linear infinite;
+}
+.circle__back-2 {
+  box-shadow: 0.4rem 0.4rem 0.8rem #c8d0e7, -0.4rem -0.4rem 0.8rem #ffffff;
+  animation: waves 4s linear 2s infinite;
+}
+.circle__back-1, .circle__back-2 {
+  grid-row: 1/2;
+  grid-column: 1/2;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 10px;
+  filter: blur(1px);
+  z-index: 100;
+}
+
+@keyframes waves {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@media (max-width:320px)  { /* smartphones, iPhone, portrait 480x320 phones */ }
+@media (max-width:481px)  { /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */ }
+@media (max-width:641px)  { /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */ }
+@media (max-width:961px)  { /* tablet, landscape iPad, lo-res laptops ands desktops */ }
+@media (max-width:1025px) { /* big landscape tablets, laptops, and desktops */ }
+@media (max-width:1281px) { /* hi-res laptops and desktops */ }
+
+@media only screen and (max-width: 961px) {
+  td.number-tickets{
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .config-table tr {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .config-table tr td:not(:first-child),.config-table tr:not(:first-child) td {
+    margin-top: 1rem;
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .config-table td.award-name {
+      width: auto;
+  }
+  th.award-name-heading,th.award-number-heading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 1rem;
+  }
+
+  .result-buttons .btn {
+    margin-top: 1rem;
+}
 }
