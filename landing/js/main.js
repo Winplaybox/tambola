@@ -14,8 +14,8 @@ function uniqueid() {
 }
 
 window.onload = function () {
-  window.addEventListener('contextmenu',function(window){window.preventDefault();});
-    window.addEventListener('dragover',function(e){e.preventDefault();},false);
+  window.addEventListener('contextmenu', function (window) { window.preventDefault(); });
+  window.addEventListener('dragover', function (e) { e.preventDefault(); }, false);
   var newRoomBtn = document.getElementById("generate-new-room");
   var joinRoomBtn = document.getElementById("join-room");
   var enterNameInput = document.getElementById("enter-name");
@@ -50,4 +50,14 @@ window.onload = function () {
     let uniqueRoomId = "game/" + enterNameInput.value;
     location.href = location.href + uniqueRoomId;
   };
+
+  if (window && window.parent) {
+    window.parent.postMessage({
+      message: JSON.stringify({
+        isPortrait: true
+      })
+    }, '*');
+  } else {
+    console.log('Your browser doesn\'t support web workers.');
+  }
 };
