@@ -19,8 +19,6 @@ var io = require("socket.io")(server, { pingTimeout: 240000,allowEIO3: true});
 
 io.on("connection", (socket) => {
   // joining a room
-
-  console.log('connection: ',socket)
   socket.on("joinRoom", ({ username, room }) => {
     const user = userJoin(socket.id, username, room);
 
