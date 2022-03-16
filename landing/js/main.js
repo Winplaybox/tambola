@@ -14,6 +14,8 @@ function uniqueid() {
 }
 
 window.onload = function () {
+  window.addEventListener('contextmenu',function(window){window.preventDefault();});
+    window.addEventListener('dragover',function(e){e.preventDefault();},false);
   var newRoomBtn = document.getElementById("generate-new-room");
   var joinRoomBtn = document.getElementById("join-room");
   var enterNameInput = document.getElementById("enter-name");

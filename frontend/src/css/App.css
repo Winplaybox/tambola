@@ -9,6 +9,7 @@ body {
   color: #ffffff;
   /* this is to prevent animation to add a horizontal scrollbar */
   overflow-x: hidden;
+  user-select: none;
 }
 
 .board-component-main {
