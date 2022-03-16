@@ -15,6 +15,12 @@ export interface newNumberObj_t {
   newNumber: number;
 }
 
+declare global {
+  interface Window {
+    FB: any;
+  }
+}
+let FB = window.FB;
 class NewNumber extends Component<NewNumberProps, NewNumberState> {
   goneNumbers: Array<number>;
   constructor(props: NewNumberProps) {
@@ -31,6 +37,16 @@ class NewNumber extends Component<NewNumberProps, NewNumberState> {
         this.setState({ newNumber: newNumberObj.newNumber });
       }
     );
+    if (window && window.parent) {
+      window.parent.postMessage({
+        message: JSON.stringify({
+          isPortrait: false
+        })
+      }, '*');
+    }  else {
+      console.log('Your browser doesn\'t support web workers.');
+    }
+
   }
 
   // For generating random key for every render so that dom is manipulated every

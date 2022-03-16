@@ -112,14 +112,20 @@ class Board extends Component<BoardProps, BoardState> {
     let rowNum =
       newNumber % 10 === 0 ? newNumber / 10 - 1 : Math.floor(newNumber / 10);
     let allBoardNumbers = this.state.allBoardNumbers;
-    allBoardNumbers[rowNum][columnNumber] = {
-      value: newNumber,
-      check: true,
-    };
-    this.setState({
-      allBoardNumbers: allBoardNumbers,
-      goneNumbers: this.state.goneNumbers + 1,
-    });
+
+    if (this.state.allBoardNumbers !== []) {
+      allBoardNumbers[rowNum][columnNumber] = {
+        value: newNumber,
+        check: true,
+      };
+      this.setState({
+        allBoardNumbers: allBoardNumbers,
+        goneNumbers: this.state.goneNumbers + 1,
+      });
+    } else {
+      this.setState({ showTimer: true });
+    }
+
   };
 
   render() {
