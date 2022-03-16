@@ -5,7 +5,6 @@ node_modules
 
 # production
 /build
-/landing/css
 
 # misc
 .DS_Store
