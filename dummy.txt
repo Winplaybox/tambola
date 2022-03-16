@@ -1,1 +1,3 @@
-"build": "rd /s/q \"build\" 2> nul & react-scripts build && md \"build\" && move \"build\" \"build\"",
+"build": "rd /s/q \"../build\" 2> nul & react-scripts build  && move \"build\" \"../build\"",
+
+"build": "react-scripts build && rm -r ../build; mv build ../build",
