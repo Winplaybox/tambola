@@ -48,11 +48,16 @@ window.onload = function () {
     let uniqueRoomId = "game/" + enterNameInput.value;
     location.href = location.href + uniqueRoomId;
   };
-  window.ReactNativeWebView.postMessage((
-    JSON.stringify({
-      isPortrait:true
-    })
-  ));
+  // window.ReactNativeWebView.postMessage((
+  //   JSON.stringify({
+  //     isPortrait:true
+  //   })
+  // ));
+
+  document.addEventListener("message", function(event) {
+    console.log("This is a Entry Point Working in Android");
+    init(event.data)
+});
   // if (window && window.parent) {
   //   window.parent.postMessage({
   //     message: JSON.stringify({
