@@ -48,12 +48,14 @@ window.onload = function () {
     let uniqueRoomId = "game/" + enterNameInput.value;
     location.href = location.href + uniqueRoomId;
   };
-  window.ReactNativeWebview.postMessage((
-    JSON.stringify({
-      isPortrait:true
-    })
-  ));
 
+  let postMessage = window.parent.postMessage;
+  if (window.ReactNativeWebView) {
+    postMessage = window.ReactNativeWebView.postMessage;
+  }
+  postMessage(JSON.stringify({
+    isPortrait: true
+  }));
   // if (window && window.parent) {
   //   window.parent.postMessage({
   //     message: JSON.stringify({

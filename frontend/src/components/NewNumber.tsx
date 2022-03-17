@@ -15,11 +15,6 @@ export interface newNumberObj_t {
   newNumber: number;
 }
 
-declare global {
-  interface Window {
-    ReactNativeWebview: any;
-  }
-}
 class NewNumber extends Component<NewNumberProps, NewNumberState> {
   goneNumbers: Array<number>;
   constructor(props: NewNumberProps) {
@@ -36,11 +31,13 @@ class NewNumber extends Component<NewNumberProps, NewNumberState> {
         this.setState({ newNumber: newNumberObj.newNumber });
       }
     );
-    window.ReactNativeWebview.postMessage((
-      JSON.stringify({
-        isPortrait:false
-      })
-    ));
+  //   let postMessage = window.parent.postMessage;
+  // if (window.ReactNativeWebView) {
+  //   postMessage = window.ReactNativeWebView.postMessage;
+  // }
+  postMessage(JSON.stringify({
+    isPortrait: false
+  }));
 
   }
 
