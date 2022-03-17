@@ -49,13 +49,15 @@ window.onload = function () {
     location.href = location.href + uniqueRoomId;
   };
 
-  let postMessage = window.parent.postMessage;
-  if (window.ReactNativeWebView) {
-    postMessage = window.ReactNativeWebView.postMessage;
-  }
-  postMessage(JSON.stringify({
-    isPortrait: true
-  }));
+  // let postMessage = window.parent.postMessage;
+  // if (window.ReactNativeWebView) {
+  //   postMessage = window.ReactNativeWebView.postMessage;
+  // }
+  // postMessage(JSON.stringify({
+  //   isPortrait: true
+  // }));
+
+  window.ReactNativeWebView.postMessage('hamburger')
   // if (window && window.parent) {
   //   window.parent.postMessage({
   //     message: JSON.stringify({
