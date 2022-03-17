@@ -57,7 +57,9 @@ window.onload = function () {
   //   isPortrait: true
   // }));
 
-  window.ReactNativeWebView.postMessage('hamburger')
+  window.ReactNativeWebView.postMessage(JSON.stringify({
+    isPortrait: true
+  }))
   // if (window && window.parent) {
   //   window.parent.postMessage({
   //     message: JSON.stringify({
