@@ -35,7 +35,7 @@ class App extends Component<AppProps, AppState> {
     // window.addEventListener('contextmenu', function (window) { window.preventDefault(); });
     // window.addEventListener('dragover', function (e) { e.preventDefault(); }, false);
 
-    window.postMessage = function(data){
+    if (window.ReactNativeWebView) {
       window.ReactNativeWebView.postMessage(JSON.stringify({
         isPortrait: true
       }));

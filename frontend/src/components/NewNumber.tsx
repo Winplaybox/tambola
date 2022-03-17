@@ -31,7 +31,7 @@ class NewNumber extends Component<NewNumberProps, NewNumberState> {
         this.setState({ newNumber: newNumberObj.newNumber });
       }
     );
-    window.postMessage = function (data) {
+    if (window.ReactNativeWebView) {
       window.ReactNativeWebView.postMessage(JSON.stringify({
         isPortrait: false
       }));
