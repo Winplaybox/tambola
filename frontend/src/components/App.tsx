@@ -33,8 +33,8 @@ class App extends Component<AppProps, AppState> {
   }
 
   componentDidMount() {
-    window.addEventListener('contextmenu', function (window) { window.preventDefault(); });
-    window.addEventListener('dragover', function (e) { e.preventDefault(); }, false);
+    // window.addEventListener('contextmenu', function (window) { window.preventDefault(); });
+    // window.addEventListener('dragover', function (e) { e.preventDefault(); }, false);
 
     if (window && window.parent) {
       window.parent.postMessage({
