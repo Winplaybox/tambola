@@ -57,9 +57,13 @@ window.onload = function () {
   //   isPortrait: true
   // }));
 
-  window.ReactNativeWebView.postMessage(JSON.stringify({
-    isPortrait: true
-  }))
+  window.postMessage = function(data){
+    window.ReactNativeWebView.postMessage(JSON.stringify({
+      isPortrait: true
+    }));
+  }
+
+  
   // if (window && window.parent) {
   //   window.parent.postMessage({
   //     message: JSON.stringify({
