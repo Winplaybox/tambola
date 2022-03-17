@@ -31,10 +31,10 @@ class NewNumber extends Component<NewNumberProps, NewNumberState> {
         this.setState({ newNumber: newNumberObj.newNumber });
       }
     );
-  //   let postMessage = window.parent.postMessage;
-  // if (window.ReactNativeWebView) {
-  //   postMessage = window.ReactNativeWebView.postMessage;
-  // }
+    let postMessage = window.parent.postMessage;
+  if (window.ReactNativeWebView) {
+    postMessage = window.ReactNativeWebView.postMessage;
+  }
   postMessage(JSON.stringify({
     isPortrait: false
   }));
