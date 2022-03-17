@@ -11,10 +11,9 @@ interface AppState {
 interface AppProps { }
 declare global {
   interface Window {
-    FB: any;
+    ReactNativeWebview: any;
   }
 }
-let FB = window.FB;
 class App extends Component<AppProps, AppState> {
   constructor(props: any) {
     super(props);
@@ -36,15 +35,11 @@ class App extends Component<AppProps, AppState> {
     // window.addEventListener('contextmenu', function (window) { window.preventDefault(); });
     // window.addEventListener('dragover', function (e) { e.preventDefault(); }, false);
 
-    if (window && window.parent) {
-      window.parent.postMessage({
-        message: JSON.stringify({
-          isPortrait: true
-        })
-      }, '*');
-    } else {
-      console.log('Your browser doesn\'t support web workers.');
-    }
+    window.ReactNativeWebview.postMessage((
+      JSON.stringify({
+        isPortrait:true
+      })
+    ));
   }
 
   render() {

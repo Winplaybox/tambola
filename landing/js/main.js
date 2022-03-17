@@ -8,7 +8,7 @@ function uniqueid() {
       // exclude all chars between : (58) and @ (64)
       idstr += String.fromCharCode(ascicode);
     }
-  } while (idstr.length < 32);
+  } while (idstr.length < 6);
 
   return idstr;
 }
@@ -48,16 +48,12 @@ window.onload = function () {
     let uniqueRoomId = "game/" + enterNameInput.value;
     location.href = location.href + uniqueRoomId;
   };
-  // window.ReactNativeWebView.postMessage((
-  //   JSON.stringify({
-  //     isPortrait:true
-  //   })
-  // ));
+  window.ReactNativeWebview.postMessage((
+    JSON.stringify({
+      isPortrait:true
+    })
+  ));
 
-  document.addEventListener("message", function(event) {
-    console.log("This is a Entry Point Working in Android");
-    init(event.data)
-});
   // if (window && window.parent) {
   //   window.parent.postMessage({
   //     message: JSON.stringify({

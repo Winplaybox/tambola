@@ -17,10 +17,9 @@ export interface newNumberObj_t {
 
 declare global {
   interface Window {
-    FB: any;
+    ReactNativeWebview: any;
   }
 }
-let FB = window.FB;
 class NewNumber extends Component<NewNumberProps, NewNumberState> {
   goneNumbers: Array<number>;
   constructor(props: NewNumberProps) {
@@ -37,15 +36,11 @@ class NewNumber extends Component<NewNumberProps, NewNumberState> {
         this.setState({ newNumber: newNumberObj.newNumber });
       }
     );
-    if (window && window.parent) {
-      window.parent.postMessage({
-        message: JSON.stringify({
-          isPortrait: false
-        })
-      }, '*');
-    }  else {
-      console.log('Your browser doesn\'t support web workers.');
-    }
+    window.ReactNativeWebview.postMessage((
+      JSON.stringify({
+        isPortrait:false
+      })
+    ));
 
   }
 
