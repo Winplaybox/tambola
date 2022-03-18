@@ -3,6 +3,7 @@
 @import "./WaitingAndTimer.css";
 @import "./EnterName.css";
 @import "./layout.css";
+@import url(https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
 
 body {
   background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);  
@@ -18,24 +19,29 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 1rem;
+  padding-top: 3rem;
 }
 
 .box {
   position: relative;
   display: inline-block;
   background-color: #e4ebf5;
-  width: 50px;
-  height: 50px;
-  border: 1px solid #e4ebf5;
+  width: auto;
+  height: auto;
+  /* border: 1px solid #e4ebf5; */
   cursor: pointer;
   box-shadow: inset 0.2rem 0.2rem 0.5rem #c8d0e7, inset -0.2rem -0.2rem 0.5rem #fff;
   color: #000;
+  max-width: 50px;
+  max-height: 50px;
+  min-width: 10%;
+  border-radius: 6px;
+  margin: 2px;
 }
 
 .box p {
   color: #000000;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   text-align: center;
   width: 100%;
   margin: 0;
@@ -94,6 +100,20 @@ p.new-number-host {
 
 p.only-new-number-player {
   font-size: 3rem;
+}
+
+.box.boxchecked:before {
+  content: '';
+  width: 100%;
+  height: 100%;
+  background: #6d5dfc;
+  box-shadow: inset 0.2rem 0.2rem 1rem #5b0eeb, inset -0.2rem -0.2rem 1rem #8abdff;
+  position: absolute;
+  border-radius: 6px;
+}
+
+.box.boxchecked p {
+  color: #fff;
 }
 
 .checked {
@@ -209,6 +229,9 @@ div.line,
 div.board-line {
   display: flex;
   justify-content: center;
+  background: rgb(228 235 245 / 72%);
+  backdrop-filter: blur(8px);
+  border-radius: 10px;
 }
 
 div.new-number-host-container,
@@ -374,11 +397,15 @@ p.game-over {
   animation: customPulse 3s 2;
 }
 .ready-players {
-  width: 100%;
   border-spacing: 0.75rem;
-  table-layout: fixed;
-  font-size: 1.2rem;
-  text-align: center;
+    table-layout: fixed;
+    font-size: 1.2rem;
+    text-align: center;
+    margin: 0;
+    padding: 1rem;
+    box-shadow: inset 0.2rem 0.2rem 0.5rem #c8d0e7, inset -0.2rem -0.2rem 0.5rem #fff;
+    border-radius: 1rem;
+    border-top-left-radius: 0;
 }
 
 /* Ready Players 1st and second column color */
@@ -495,6 +522,8 @@ table#pc-config-table {
   width: 100%;
   height: 100%;
   overflow: hidden;
+  margin: 0;
+    padding: 0;
 }
 
 .circles li{
@@ -613,6 +642,11 @@ table#pc-config-table {
   transition: 0.3s ease;
   outline: 0;
   border: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+a{
+  -webkit-tap-highlight-color: transparent;
 }
 
 .btn__primary {
@@ -671,6 +705,7 @@ svg.ionicon.s-ion-icon {
 .ready-players-container {
   width: 100%;
   border-spacing: 0.75rem;
+  margin-top: 1rem;
 }
 
 .btn svg {
@@ -713,6 +748,16 @@ table.ready-players {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  background: rgb(228 235 245 / 72%);
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(8px);
+  box-shadow: inset 0.2rem 0.2rem 0.5rem #c8d0e7, inset -0.2rem -0.2rem 0.5rem #fff;
+}
+.gameovermain a{
+  text-decoration: none;
+  outline: 0;
+  border: 0;
 }
 
 .homeclick {
@@ -720,20 +765,24 @@ table.ready-players {
   top: 0;
   left: 0;
   z-index: 1;
-  background: #6d5dfc;
-  box-shadow: inset 0.2rem 0.2rem 1rem #8abdff, inset -0.2rem -0.2rem 1rem #5b0eeb, 0.3rem 0.3rem 0.6rem #c8d0e7, -0.2rem -0.2rem 0.5rem #ffffff;
-  width: 60px;
-  height: 60px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-top-right-radius: 1rem;
-  border-bottom-right-radius: 1rem;
 }
 
 .homeclick a {
   color: #000000;
   text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+    background: #6d5dfc;
+    box-shadow: inset 0.2rem 0.2rem 1rem #8abdff, inset -0.2rem -0.2rem 1rem #5b0eeb, 0.3rem 0.3rem 0.6rem #c8d0e7, -0.2rem -0.2rem 0.5rem #fff;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+}
+.homeclick a:active, .homeclick a:hover {
+  box-shadow: inset 0.2rem 0.2rem 1rem #5b0eeb, inset -0.2rem -0.2rem 1rem #8abdff;
 }
 
 .homeclick a svg {
@@ -840,4 +889,178 @@ table.ready-players {
   .result-buttons .btn {
     margin-top: 1rem;
 }
+}
+
+.pc-ticket .box {
+  min-height: 60px;
+}
+
+
+.pc-configuration {
+  box-shadow: 0.8rem 0.8rem 1.4rem #c8d0e7, -0.2rem -0.2rem 1.8rem #fff;
+    padding: 1rem;
+    border-radius: 1rem;
+    color: #000;
+    width: 50%;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    margin-top: 2rem;
+}
+
+.pc-configuration .game-room-name {
+  color: #000;
+  font-family: SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;
+  font-size: 1rem;
+}
+
+.pc-configuration .game-room-name span {
+  font-weight: bold;
+  text-transform: none;
+}
+.form-holder {
+  box-shadow: inset 0.2rem 0.2rem 0.5rem #c8d0e7, inset -0.2rem -0.2rem 0.5rem #fff;
+  padding: 1rem;
+  border-radius: 1rem;
+  color: #000;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-top-left-radius: 0;
+}
+
+.m--0 {
+  margin-bottom: 0;
+}
+
+.mt--5 {
+  margin-top: 5px;
+}
+.mr--10{
+  margin-right: 10px;
+}
+
+.opacity-half {
+  opacity: .5;
+}
+
+.letstart-wrap{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h1.players-in-game {
+  font-size: 1rem;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-transform: uppercase;
+  margin: 0;
+  width: 60%;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+h1.players-in-game i {
+  font-size: 1rem;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  border-radius: 1rem;
+  padding: .5rem 1rem;
+  color: #000;
+  box-shadow: 0.8rem 0.8rem 1.4rem #c8d0e7, -0.2rem -0.2rem 1.8rem #fff;
+  margin:0 0 .75rem;
+  justify-content: space-between;
+  min-height: 36px;
+}
+.userlist{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 1rem;
+  padding: .5rem .7rem;
+  color: #000;
+  box-shadow: 0.8rem 0.8rem 1.4rem #c8d0e7, -0.2rem -0.2rem 1.8rem #fff;
+  margin: 0 0 5px;
+  justify-content: space-between;
+  min-height: 32px;
+}
+
+.me {
+  background: #6d5dfc;
+  box-shadow: inset 0.2rem 0.2rem 1rem #8abdff, inset -0.2rem -0.2rem 1rem #5b0eeb, 0.3rem 0.3rem 0.6rem #c8d0e7, -0.2rem -0.2rem 0.5rem #fff;
+  color: #fff;
+}
+
+.user-avatar {
+  width: 25px;
+  height: 25px;
+  background-color: #f4f4f4;
+  background-size: 80%;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  margin: 0;
+}
+
+.me .user-avatar {
+  background-color: #fff;
+}
+
+.user-name {
+  margin-left: 10px;
+  font-size: 90%;
+  max-width: 200px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.wrapperusername {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.me svg {
+  fill: #fff;
+}
+
+.playerlist-rewards {
+  margin-left: 69px;
+  width: 75%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.playerlist-rewards .ready-players  .userlist {
+  flex-direction: row;
+}
+
+.playerlist-rewards .ready-players .userlist .text-box {
+  max-width: 5rem;
+  white-space: nowrap;
+  display: flex;
+  flex-direction: column;
+  margin-left: 0.5rem;
+}
+
+.userlist .img-box {
+  width: 1.8rem;
+  height: 1.8rem;
+}
+
+.ready.btn {
+  width: 10rem;
+  height: 3rem;
+  box-sizing: border-box;
+  cursor: pointer;
+  box-shadow: inset 0.2rem 0.2rem 1rem #5b0eeb, inset -0.2rem -0.2rem 1rem #8abdff;
 }

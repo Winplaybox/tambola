@@ -1,10 +1,12 @@
 import * as React from "react";
 import { Component } from "react";
 import GoneNumbers from "./GoneNumbers";
-
+import { PcStatus, CurrentUser } from "./Config";
 interface NewNumberProps {
   socket: any;
   name: string;
+  players: any;
+  currentUser: CurrentUser[];
 }
 
 interface NewNumberState {
@@ -36,7 +38,7 @@ class NewNumber extends Component<NewNumberProps, NewNumberState> {
         isPortrait: false
       }));
     }
-
+    console.log("players List: ", this.props.players)
   }
 
   // For generating random key for every render so that dom is manipulated every
@@ -44,17 +46,48 @@ class NewNumber extends Component<NewNumberProps, NewNumberState> {
   generateRandomKey = () => {
     return Math.random() * 10000;
   };
+  playersComp = () => {
+    console.log('currentUser Array: ', this.props.currentUser)
+    let arryplayersComp = [];
+    for (let i = 0; i < this.props.players.length; ++i) {
+      arryplayersComp.push(
+        <div key={i} className={`userlist${this.props.name === this.props.players[i].user.username ? ' me' : ''}`}>
+          <div className="img-box" >
+            <img src={`${this.props.players[i].avatars}`} />
+          </div>
+          <div className="text-box">
+            <small>{this.props.name === this.props.players[i].user.username ? 'You' : this.props.players[i].user.username}</small>
+            <span className="score-box">{this.props.players[i].pointsEarned}</span>
+          </div>
+        </div>
+      );
+    }
+    return arryplayersComp;
+  }
 
   render() {
+
     let newNumberComponent = (
       <>
+        <section className="connected-participants">
         <div className="homeclick">
           <a href="/" style={{ color: "#000000", textDecoration: 'none' }} title="exit">
             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none" /><path d="M10.79 16.29c.39.39 1.02.39 1.41 0l3.59-3.59c.39-.39.39-1.02 0-1.41L12.2 7.7c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41L12.67 11H4c-.55 0-1 .45-1 1s.45 1 1 1h8.67l-1.88 1.88c-.39.39-.38 1.03 0 1.41zM19 3H5c-1.11 0-2 .9-2 2v3c0 .55.45 1 1 1s1-.45 1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1H6c-.55 0-1-.45-1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1v3c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" /></svg>
           </a>
         </div>
-        <span className="usernamehead">Hi, {this.props.name}</span>
-        <p className="new-number-player">New Number </p>
+        {/* <div className="playerlist-rewards">
+          <div className="ready-players">
+            {this.playersComp()}
+          </div>
+        </div> */}
+        {/* <div className="claim-btn-holder">
+          <button className="btn btn_primary">
+            <i className="fa fa-trophy"></i>
+            <span className="text">Claim</span>
+          </button>
+          <div className="claims-left">11</div>
+        </div> */}
+        </section>
         <div className="wrapgennumber">
           <div
             key={this.generateRandomKey()}

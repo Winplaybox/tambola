@@ -53,6 +53,7 @@ p.award-status {
   backdrop-filter: blur(8px);
   padding: 1rem;
   background: rgb(228 235 245 / 72%);
+  height: 100vh;
 }
 
 
@@ -86,5 +87,8 @@ p.award-status {
 @media only screen and (max-width: 961px) {
   .config-container{
     padding-top: 3rem;
+  }
+  div.everything-but-prizes, div.prizes-container{
+    width: 100%;
   }
 }

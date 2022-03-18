@@ -28,16 +28,21 @@ class Box extends Component<BoxProps, BoxState> {
     };
   }
   clickHandler = () => {
-    let invertCheck = this.state.check ? false : true;
-    this.setState({ check: invertCheck, value: this.state.value });
+    if (this.props.value === 0) {
+      console.log('no value')
+    } else {
+      let invertCheck = this.state.check ? false : true;
+      this.setState({ check: invertCheck, value: this.state.value });
 
-    // Change house's state when clicked, only on ticket and not on board
-    if (
-      this.props.changeTicketState !== undefined &&
-      this.props.index !== undefined
-    ) {
-      this.props.changeTicketState(this.props.index, invertCheck);
+      // Change house's state when clicked, only on ticket and not on board
+      if (
+        this.props.changeTicketState !== undefined &&
+        this.props.index !== undefined
+      ) {
+        this.props.changeTicketState(this.props.index, invertCheck);
+      }
     }
+
   };
 
   // This is only for the newNumber generated in the board sends new props to the box
@@ -51,9 +56,14 @@ class Box extends Component<BoxProps, BoxState> {
   render() {
     let checkedCssClass = this.state.check ? "checked" : "unchecked";
     return (
-      <div className={`box ${this.state.check ? "boxchecked" : "boxunchecked"}`} onClick={this.clickHandler}>
-        <div className={checkedCssClass}></div>
-        <div className={checkedCssClass}></div>
+      <div
+        className={`box ${this.state.check ? "boxchecked" : "boxunchecked"}`}
+
+        onClick={this.clickHandler}
+        style={{ pointerEvents: this.props.value === 0 ? "none" : "auto" }}
+      >
+        {/* <div className={checkedCssClass}></div>
+        <div className={checkedCssClass}></div> */}
         <p>{this.props.value === 0 ? "" : this.props.value}</p>
       </div>
     );

@@ -21,6 +21,8 @@ class GoneNumbers extends Component<GoneNumbersProps, GoneNumbersState> {
       mainComp.push(<p key={i}>{this.props.numbers[i]}</p>);
     }
 
+    console.log('this.props.numbers',this.props.numbers)
+
     return (
       <>
         {

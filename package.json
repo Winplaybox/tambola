@@ -24,9 +24,11 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "http": "0.0.1-security",
+    "lodash": "^4.17.21",
     "socket.io": "^4.4.1"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.180",
     "@types/socket.io-client": "^1.4.32",
     "nodemon": "^2.0.3",
     "prettier": "^2.0.5"

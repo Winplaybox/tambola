@@ -4,7 +4,7 @@ import Board from "./Board";
 import { BoxState } from "./Box";
 import PcTicket from "./PcTicket";
 import MultipleHostTicket from "./MultipleHostTickets";
-import { Award } from "./Config";
+import { Award,PcStatus,CurrentUser } from "./Config";
 import Prizes from "./Prizes";
 import Walkthrough from "./Walkthrough";
 import Reward from "react-rewards";
@@ -27,9 +27,12 @@ interface PlayerProps {
   socket: any;
   type: string; // type is either PC or host
   name: string;
+  players:PcStatus[]
 
   // awards coming for buttons and leaderboard
   awards: Award[];
+
+  currentUser:CurrentUser[];
 
   // for PC
   numHouses: number;
@@ -89,6 +92,8 @@ class Player extends Component<PlayerProps, PlayerState> {
               awards={this.props.awards}
               endGame={this.endGame}
               name={this.props.name}
+              players={this.props.players}
+              currentUser={this.props.currentUser}
             />
           </div>
           {gameOverP}

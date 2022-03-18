@@ -113,7 +113,21 @@ class Board extends Component<BoardProps, BoardState> {
       newNumber % 10 === 0 ? newNumber / 10 - 1 : Math.floor(newNumber / 10);
     let allBoardNumbers = this.state.allBoardNumbers;
 
-    if (this.state.allBoardNumbers !== []) {
+    // console.log('handleNewNumber: ', this.state.allBoardNumbers)
+
+    let newarray = [];
+    if (Array.isArray(this.state.allBoardNumbers)) {
+      for (let i = 0; i < this.state.allBoardNumbers.length; i++) {
+        if (Array.isArray(this.state.allBoardNumbers[i])) {
+          // console.log(`row ${i}`, this.state.allBoardNumbers[i].filter((item) => item.check === false));
+          // console.log(`result if empty: `, this.state.allBoardNumbers[i].filter((item) => item.check === false).length)
+          if (this.state.allBoardNumbers[i].filter((item) => item.check === false).length) {
+            newarray.push(this.state.allBoardNumbers[i].filter((item) => item.check === false))
+          }
+        }
+      }
+    }
+    if (newarray.length > 0) {
       allBoardNumbers[rowNum][columnNumber] = {
         value: newNumber,
         check: true,

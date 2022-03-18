@@ -6,7 +6,7 @@ import { generateTicket } from "../utils/utils";
 import WinningButtons from "./WinningButtons";
 import NewNumber from "./NewNumber";
 import Notification from "./Notification";
-import { Award } from "./Config";
+import { Award,PcStatus,CurrentUser } from "./Config";
 import Waiting from "./Waiting";
 import Timer from "./Timer";
 
@@ -15,6 +15,8 @@ interface PcTicketProps {
   name:string;
   // awards coming for winning buttons
   awards: Award[];
+  players:PcStatus[];
+  currentUser:CurrentUser[]
 
   // number of houses
   numHouses: number;
@@ -78,7 +80,7 @@ class PcTicket extends Component<PcTicketProps, PcTicketState> {
 
     return (
       <div className="pc-ticket">
-        <NewNumber socket={this.props.socket} name={this.props.name} />
+        <NewNumber socket={this.props.socket} name={this.props.name} players={this.props.players} currentUser={this.props.currentUser}/>
         {timer}
         <Waiting playerType="PC" socket={this.props.socket} />
         <div className="notification-parent">
