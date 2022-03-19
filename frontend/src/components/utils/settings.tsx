@@ -22,6 +22,8 @@ export default {
         sleepy: { key: 'sleepy', name: 'Sleepy', imgName: 'react-sleepy', className: 'sleepy' },
     },
     botts: (val:any)=>`https://avatars.dicebear.com/api/bottts/${val}.svg`,
+    rulesImage: (val:any)=>require(`../../images/rules/rule-${val}.svg`).default,
+    audio: (selectedSpeaker:any,num:any)=>require(`../../audio/${selectedSpeaker}/${num}.mp3`).default,
     shartext: (val:any)=>`Use this invite: ${val}`,
     awards: {
         corner: { key: 'corner', name: 'Corners', count: '2', pts: '30',status:'1' },

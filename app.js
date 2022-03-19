@@ -14,7 +14,7 @@ const {
 
 const app = express();
 const server = http.createServer(app);
-var io = require("socket.io")(server, { pingTimeout: 240000,allowEIO3: true});
+var io = require("socket.io")(server, { pingTimeout: 240000, allowEIO3: true });
 
 
 io.on("connection", (socket) => {
@@ -110,6 +110,16 @@ io.on("connection", (socket) => {
       console.log("newNumberFromHost:", num, "in room:", user.room);
     } else {
       console.log("ISSUE: new number coming from null user");
+    }
+  });
+
+  socket.on("getCurrentUser", (user1) => {
+    const user = getCurrentUser(socket.id);
+
+    // event for notifying PCs that new number was called
+    if (user) {
+      io.to(user.room).emit("getCurrentUserDetails", user1);
+      console.log("getCurrentUserHost:", "in room:", user,user1);
     }
   });
 

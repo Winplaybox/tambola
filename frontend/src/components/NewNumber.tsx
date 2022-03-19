@@ -1,7 +1,10 @@
 import * as React from "react";
 import { Component } from "react";
+import _ from 'lodash';
 import GoneNumbers from "./GoneNumbers";
-import { PcStatus, CurrentUser, Award } from "./Config";
+import { Award, CurrentUser } from "./Config";
+import settings from './utils/settings';
+
 interface NewNumberProps {
   socket: any;
   name: string;
@@ -13,6 +16,9 @@ interface NewNumberProps {
 
 interface NewNumberState {
   newNumber: number;
+  selectedSpeaker: any;
+  audio: any;
+  play: boolean;
 }
 
 export interface newNumberObj_t {
@@ -23,16 +29,20 @@ class NewNumber extends Component<NewNumberProps, NewNumberState> {
   goneNumbers: Array<number>;
   constructor(props: NewNumberProps) {
     super(props);
-    this.state = { newNumber: 0 };
+    this.state = { newNumber: 0, selectedSpeaker: _.first(settings.availableSpeakersList), audio: '', play: false };
     this.goneNumbers = [];
   }
 
   componentDidMount() {
+    const { audio } = this.state;
     this.props.socket.on(
       "newNumberFromHost",
       (newNumberObj: newNumberObj_t) => {
         this.goneNumbers.push(newNumberObj.newNumber);
         this.setState({ newNumber: newNumberObj.newNumber });
+        this.speakNumber(newNumberObj.newNumber);
+
+        console.log(`${newNumberObj.newNumber}.mp3`);
       }
     );
     if (window.ReactNativeWebView) {
@@ -40,7 +50,31 @@ class NewNumber extends Component<NewNumberProps, NewNumberState> {
         isPortrait: false
       }));
     }
-    console.log("players List: ", this.props.players)
+    console.log("players List: ", this.props.players, this.state.selectedSpeaker, this.state.selectedSpeaker['path'])
+  }
+
+  onEndCallback = () => {
+    console.log("The audio has ended.")
+  }
+
+  speakNumber = (num: number) => {
+    let audio = new Audio(settings.audio(this.state.selectedSpeaker['path'],num));
+    audio.onended = this.onEndCallback;
+
+    let playedPromise = audio.play();
+    console.log('playedPromise: ', playedPromise)
+    if (playedPromise !== undefined) {
+      playedPromise.then(function () {
+        // Automatic playback started!
+        console.log('started audio')
+      }).catch(function (error) {
+        console.log('audio', error)
+        // Automatic playback failed.
+        // Show a UI element to let the user manually start playback.
+      });
+    }
+
+    return audio;
   }
 
   // For generating random key for every render so that dom is manipulated every
@@ -49,7 +83,7 @@ class NewNumber extends Component<NewNumberProps, NewNumberState> {
     return Math.random() * 10000;
   };
   playersComp = () => {
-    console.log('currentUser Array: ', this.props.currentUser)
+    console.log('currentUser Array: ', this.props.currentUser, this.props.awards)
     let arryplayersComp = [];
     for (let i = 0; i < this.props.players.length; ++i) {
       arryplayersComp.push(
@@ -68,14 +102,11 @@ class NewNumber extends Component<NewNumberProps, NewNumberState> {
   }
 
   awardsCount = () => {
-    let newarry = this.props.awards.length
-
-    // let newarry = array.filter((item) => {
-    //   const newdata = `${item.numAward}`
-    //   return newdata !== '0'
-    // })
-    // console.log(newarry)
-    return newarry;
+    let array = this.props.awards
+    let newarry = array.filter(function (el) {
+      return el.numAward !== '0';
+    });
+    return newarry.length;
   }
 
   render() {
@@ -101,19 +132,21 @@ class NewNumber extends Component<NewNumberProps, NewNumberState> {
             <div className="claims-left">{this.awardsCount()}</div>
           </div>
         </section>
-        <div className="wrapgennumber">
-          <div
-            key={this.generateRandomKey()}
-            className="new-number-player-container custom-pulse"
-          >
-            <p className="only-new-number-player">
-              {this.state.newNumber ? this.state.newNumber : ""}
-            </p>
-          </div>
-          <span className="circle__back-1"></span>
-          <span className="circle__back-2"></span>
-        </div>
-        <GoneNumbers numbers={this.goneNumbers} />
+        {
+          this.state.newNumber ?
+            <div className="rowofGonenumber">
+              <div
+                key={this.generateRandomKey()}
+                className="new-number-wrap"
+              >
+                <p className="only-new-number-player">
+                  {this.state.newNumber ? this.state.newNumber : ""}
+                </p>
+              </div>
+              <GoneNumbers numbers={this.goneNumbers} sameNumberinCurrent={this.state.newNumber} />
+            </div> : null
+        }
+
       </>
     );
     return newNumberComponent;

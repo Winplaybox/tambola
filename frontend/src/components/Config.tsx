@@ -102,44 +102,60 @@ class Config extends Component<ConfigProps, ConfigState> {
       hasGameAlreadyStarted: false,
       awards: [
         {
+          keyAward: settings.awards.house.key,
           nameAward: settings.awards.house.name,
           numAward: settings.awards.house.count,
-          ptsAward: settings.awards.house.pts
+          ptsAward: settings.awards.house.pts,
+          statusAward: settings.awards.house.status
         },
         {
+          keyAward: settings.awards.star.key,
           nameAward: settings.awards.star.name,
           numAward: settings.awards.star.count,
-          ptsAward: settings.awards.star.pts
+          ptsAward: settings.awards.star.pts,
+          statusAward: settings.awards.star.status
         },
         {
+          keyAward: settings.awards.corner.key,
           nameAward: settings.awards.corner.name,
           numAward: settings.awards.corner.count,
-          ptsAward: settings.awards.corner.pts
+          ptsAward: settings.awards.corner.pts,
+          statusAward: settings.awards.corner.status
         },
         {
+          keyAward: settings.awards.lastline.key,
           nameAward: settings.awards.lastline.name,
           numAward: settings.awards.lastline.count,
-          ptsAward: settings.awards.lastline.pts
+          ptsAward: settings.awards.lastline.pts,
+          statusAward: settings.awards.lastline.status
         },
         {
+          keyAward: settings.awards.middleline.key,
           nameAward: settings.awards.middleline.name,
           numAward: settings.awards.middleline.count,
-          ptsAward: settings.awards.middleline.pts
+          ptsAward: settings.awards.middleline.pts,
+          statusAward: settings.awards.middleline.status
         },
         {
+          keyAward: settings.awards.firstline.key,
           nameAward: settings.awards.firstline.name,
           numAward: settings.awards.firstline.count,
-          ptsAward: settings.awards.firstline.pts
+          ptsAward: settings.awards.firstline.pts,
+          statusAward: settings.awards.firstline.status
         },
         {
+          keyAward: settings.awards.earlyseven.key,
           nameAward: settings.awards.earlyseven.name,
           numAward: settings.awards.earlyseven.count,
-          ptsAward: settings.awards.earlyseven.pts
+          ptsAward: settings.awards.earlyseven.pts,
+          statusAward: settings.awards.earlyseven.status
         },
         {
+          keyAward: settings.awards.earlyfive.key,
           nameAward: settings.awards.earlyfive.name,
           numAward: settings.awards.earlyfive.count,
-          ptsAward: settings.awards.earlyfive.pts
+          ptsAward: settings.awards.earlyfive.pts,
+          statusAward: settings.awards.earlyfive.status
         }
       ],
       hostDisconnected: false,
@@ -233,8 +249,12 @@ class Config extends Component<ConfigProps, ConfigState> {
       }
     });
 
+    this.props.socket.on("getCurrentUser", (user: User) => {
+      console.log('getCurrentUser: ',user);
+    });
+
     // server sending awards from Host as Host is ready
-    this.props.socket.on("HostConfigDone", (awards: any, user: User) => {
+    this.props.socket.on("HostConfigDone", (awards: any) => {
       this.setState({
         awards: awards,
         readyHost: true
@@ -273,9 +293,11 @@ class Config extends Component<ConfigProps, ConfigState> {
   };
   handleAddRow = () => {
     const item = {
+      keyAward: '',
       nameAward: "",
       numAward: "",
       ptsAward: "",
+      statusAward: ""
     };
     this.setState({
       awards: [...this.state.awards, item],
@@ -344,15 +366,15 @@ class Config extends Component<ConfigProps, ConfigState> {
     return array;
   }
 
-  // copyLinkToClipboard = () => {
-  //   let copyInput = document.createElement('input');
-  //   copyInput.setAttribute('value', settings.shartext(roomID));
-  //   document.body.appendChild(copyInput);
-  //   copyInput.select();
-  //   let copyResult = document.execCommand('copy');
-  //   document.body.removeChild(copyInput);
-  //   return copyResult;
-  // }
+  copyLinkToClipboard = () => {
+    let copyInput = document.createElement('input');
+    copyInput.setAttribute('value', settings.shartext(roomID));
+    document.body.appendChild(copyInput);
+    copyInput.select();
+    let copyResult = document.execCommand('copy');
+    document.body.removeChild(copyInput);
+    return copyResult;
+  }
 
   // shareInviteLink = () => {
   //   if (navigator.share) {
@@ -426,6 +448,18 @@ class Config extends Component<ConfigProps, ConfigState> {
 
       mainComponent = (
         <div className="config-container">
+          <div className="homeclick">
+            <a href="/" style={{ color: "#000000", textDecoration: 'none' }} title="home">
+              <svg xmlns="http://www.w3.org/2000/svg" className="ionicon s-ion-icon" viewBox="0 0 512 512">
+                <path
+                  d="M261.56 101.28a8 8 0 00-11.06 0L66.4 277.15a8 8 0 00-2.47 5.79L63.9 448a32 32 0 0032 32H192a16 16 0 0016-16V328a8 8 0 018-8h80a8 8 0 018 8v136a16 16 0 0016 16h96.06a32 32 0 0032-32V282.94a8 8 0 00-2.47-5.79z">
+                </path>
+                <path
+                  d="M490.91 244.15l-74.8-71.56V64a16 16 0 00-16-16h-48a16 16 0 00-16 16v32l-57.92-55.38C272.77 35.14 264.71 32 256 32c-8.68 0-16.72 3.14-22.14 8.63l-212.7 203.5c-6.22 6-7 15.87-1.34 22.37A16 16 0 0043 267.56L250.5 69.28a8 8 0 0111.06 0l207.52 198.28a16 16 0 0022.59-.44c6.14-6.36 5.63-16.86-.76-22.97z">
+                </path>
+              </svg>
+            </a>
+          </div>
           <Walkthrough playerType="Host" type="config" runWalkthrough={this.state.runWalkthrough} />
           <Snackbar
             message="Share this 'join code' with other players"
@@ -441,11 +475,11 @@ class Config extends Component<ConfigProps, ConfigState> {
           />
           {
             this.state.isModalOpen ? <div modal-status={this.state.watchTutorialModal} className="modalpoppup">
-              <div className="area" >
+              {/* <div className="area" >
                 <ul className="circles">
                   {this.loopfun(10)}
                 </ul>
-              </div >
+              </div > */}
               <div className="modalpoppupcontent">
                 <h3 style={{ color: "#000000" }}>Some players are still not ready.</h3>
                 <h3 style={{ color: "#000000" }}>Are you sure you want to start the game?</h3>
@@ -481,9 +515,21 @@ class Config extends Component<ConfigProps, ConfigState> {
       //    Number of Tickets
       mainComponent = (
         <div className="config-container">
+          <div className="homeclick">
+            <a href="/" style={{ color: "#000000", textDecoration: 'none' }} title="home">
+              <svg xmlns="http://www.w3.org/2000/svg" className="ionicon s-ion-icon" viewBox="0 0 512 512">
+                <path
+                  d="M261.56 101.28a8 8 0 00-11.06 0L66.4 277.15a8 8 0 00-2.47 5.79L63.9 448a32 32 0 0032 32H192a16 16 0 0016-16V328a8 8 0 018-8h80a8 8 0 018 8v136a16 16 0 0016 16h96.06a32 32 0 0032-32V282.94a8 8 0 00-2.47-5.79z">
+                </path>
+                <path
+                  d="M490.91 244.15l-74.8-71.56V64a16 16 0 00-16-16h-48a16 16 0 00-16 16v32l-57.92-55.38C272.77 35.14 264.71 32 256 32c-8.68 0-16.72 3.14-22.14 8.63l-212.7 203.5c-6.22 6-7 15.87-1.34 22.37A16 16 0 0043 267.56L250.5 69.28a8 8 0 0111.06 0l207.52 198.28a16 16 0 0022.59-.44c6.14-6.36 5.63-16.86-.76-22.97z">
+                </path>
+              </svg>
+            </a>
+          </div>
           <Walkthrough playerType="PC" type="config" runWalkthrough={this.state.runWalkthrough} />
           <div className="pc-configuration">
-            <div className="game-room-name">Invite Code: <span>{roomID}</span></div>
+            <div className="game-room-name">Invite Code: <span onClick={this.copyLinkToClipboard}>{roomID}</span></div>
           </div>
           <div className="form-holder">
             <p className="m--0"><strong>Welcome, {this.props.name}</strong></p>
@@ -496,13 +542,13 @@ class Config extends Component<ConfigProps, ConfigState> {
             this.state.readyClient ?
               <div className='letstart-wrap'>
                 <div className="ready btn btn__primary">
-                  Ready
+                  <i className="fa fa-spin fa-refresh mr--10"></i>Ready
                 </div>
               </div>
               :
               <form onSubmit={this.handleSubmit} className='letstart-wrap'>
                 <button className="btn btn__primary" type="submit">
-                  Let's Start
+                  Ready?
                 </button>
               </form>
 
@@ -518,11 +564,11 @@ class Config extends Component<ConfigProps, ConfigState> {
         {mainComponent}
         {
           this.state.watchTutorialModal ? <div modal-status={this.state.watchTutorialModal} className="modalpoppup">
-            <div className="area" >
+            {/* <div className="area" >
               <ul className="circles">
                 {this.loopfun(10)}
               </ul>
-            </div >
+            </div > */}
             <div className="modalpoppupcontent">
               <h3 style={{ color: "#000000" }}>Would you like to watch tutorial?</h3>
               <div className="modal-buttons">

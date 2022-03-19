@@ -72,9 +72,7 @@ class PcTicket extends Component<PcTicketProps, PcTicketState> {
       winCallBack={this.handleWinningCall}
     />
   );
-
   handleClaim = (val: any) => {
-    console.log('claim', val)
     this.setState({
       isModalOpen: val
     })
@@ -88,7 +86,7 @@ class PcTicket extends Component<PcTicketProps, PcTicketState> {
 
     return (
       <div className="pc-ticket">
-        <NewNumber socket={this.props.socket} name={this.props.name} players={this.props.players} currentUser={this.props.currentUser} handleClaim={this.handleClaim} awards={this.props.awards}/>
+        <NewNumber socket={this.props.socket} name={this.props.name} players={this.props.players} currentUser={this.props.currentUser} handleClaim={this.handleClaim} awards={this.props.awards} />
         {timer}
         <Waiting playerType="PC" socket={this.props.socket} />
         <div className="notification-parent">
@@ -103,6 +101,8 @@ class PcTicket extends Component<PcTicketProps, PcTicketState> {
 
           <Notification socket={this.props.socket} type="Pc" />
         </div>
+
+
 
         {
           this.state.isModalOpen ? <div className="claim-popup">

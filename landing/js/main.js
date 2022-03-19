@@ -27,6 +27,22 @@ window.onload = function () {
     document.getElementById('new-home').style.display = 'none';
     document.getElementById('join-room-code').style.display = 'block';
   };
+  enterNameInput.onchange = (e) => {
+    let txtinput = e.target.value;
+    if (txtinput.length > 0) {
+      document.getElementById('join-game-submit-wap').style.visibility = 'visible';
+    } else {
+      document.getElementById('join-game-submit-wap').style.visibility = 'hidden';
+    }
+  };
+  enterNameInput.onkeydown = (e) => {
+    let txtinput = e.target.value;
+    if (txtinput.length > 0) {
+      document.getElementById('join-game-submit-wap').style.visibility = 'visible';
+    } else {
+      document.getElementById('join-game-submit-wap').style.visibility = 'hidden';
+    }
+  };
 
   enterNameInput.onkeyup = (e) => {
     let txtinput = e.target.value;
@@ -49,28 +65,9 @@ window.onload = function () {
     location.href = location.href + uniqueRoomId;
   };
 
-  // let postMessage = window.parent.postMessage;
-  // if (window.ReactNativeWebView) {
-  //   postMessage = window.ReactNativeWebView.postMessage;
-  // }
-  // postMessage(JSON.stringify({
-  //   isPortrait: true
-  // }));
-
   if (window.ReactNativeWebView) {
     window.ReactNativeWebView.postMessage(JSON.stringify({
       isPortrait: true
     }));
   }
-
-
-  // if (window && window.parent) {
-  //   window.parent.postMessage({
-  //     message: JSON.stringify({
-  //       isPortrait: true
-  //     })
-  //   }, '*');
-  // } else {
-  //   console.log('Your browser doesn\'t support web workers.');
-  // }
 };

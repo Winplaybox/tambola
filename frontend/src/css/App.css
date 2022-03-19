@@ -6,7 +6,7 @@
 @import url(https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
 
 body {
-  background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);  
+  background:#e4ebf5; 
   color: #ffffff;
   /* this is to prevent animation to add a horizontal scrollbar */
   overflow-x: hidden;
@@ -19,7 +19,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 3rem;
+  /* padding-top: 3rem; */
 }
 
 .box {
@@ -452,7 +452,6 @@ table#pc-config-table {
   transition: 0.2s;
 }
 
-.winning-buttons,
 .result-buttons,
 .modal-buttons {
   display: flex;
@@ -460,7 +459,6 @@ table#pc-config-table {
   flex-wrap: wrap;
   
 }
-.winning-buttons,
 .result-buttons {
   box-shadow: 0.8rem 0.8rem 1.4rem #c8d0e7, -0.2rem -0.2rem 1.8rem #fff;
   border-radius: 10px;
@@ -524,6 +522,7 @@ table#pc-config-table {
   overflow: hidden;
   margin: 0;
     padding: 0;
+    display: none;
 }
 
 .circles li{
@@ -1204,7 +1203,153 @@ div.pc-ticket .homeclick,.connected-participants .homeclick{
   backdrop-filter: blur(8px);
   background: rgb(228 235 245/72%);
   height: 100%;
+  width: 100%;
 }
 .modalhead  .btn.btn-popup-close {
   width: 50px;
+}
+
+.notification-parent {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.rowofGonenumber {
+  width: 90%;
+  box-shadow: 0.8rem 0.8rem 1.4rem #c8d0e7, -0.2rem -0.2rem 1.8rem #fff;
+  /* padding: 10px; */
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  margin-right: 1rem;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  background: rgb(228 235 245/72%);
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.new-number-wrap {
+  box-shadow: 0.8rem 0.8rem 1.4rem #c8d0e7, -0.2rem -0.2rem 1.8rem #fff;
+  background: #6d5dfc;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 6%;
+  height: 3rem;
+  font-weight: 700;
+  border-radius: 1rem;
+}
+
+.new-number-wrap p.only-new-number-player {
+  color: #fff;
+  position: relative;
+  font-size: 2rem;
+  left: 0;
+  top: 0;
+  transform: inherit;
+}
+
+.modalbody {
+  height: 80%;
+  overflow-y: auto;
+  box-shadow: inset 0.2rem 0.2rem 0.5rem #c8d0e7, inset -0.2rem -0.2rem 0.5rem #fff;
+}
+
+.modalbody .winning-buttons {
+  box-shadow: none;
+  overflow: auto;
+  padding: 1rem;
+}
+
+.popup-list.grid {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.popup-list.grid li {
+  padding-left: 0;
+  width: 25%;
+}
+
+.popup-list.grid .item .link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  padding: .75rem 0;
+  border-radius: 1rem;
+  height: 100%;
+  text-decoration: none;
+  margin: 1rem;
+  box-shadow: 0.3rem 0.3rem 0.6rem #c8d0e7, -0.2rem -0.2rem 0.5rem #fff;
+  position: relative;
+}
+.popup-list.grid .item .link:active,.popup-list.grid .item .link:hover {
+  box-shadow:inset 0.2rem 0.2rem 0.5rem #c8d0e7, inset -0.2rem -0.2rem 0.5rem #fff;
+}
+
+.item .link .icon-img {
+  position: relative;
+  max-width: 85%;
+}
+
+.icon-img img {
+  max-width: 100%;
+  padding: 0;
+  margin: 0 0 0.3rem;
+}
+
+.content {
+  margin:0;
+  width: 100%;
+}
+
+.content .text {
+  display: block;
+  font-size: .75rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+span.text-uppercase {
+  text-transform: uppercase;
+}
+
+.connected-participants .ready-players{
+  display: flex;
+}
+
+.countleftclaaim {
+  position: absolute;
+  top: -15px;
+  width: 25px;
+  font-size: .8rem;
+  font-weight: 600;
+  background-color: #ff2929;
+  text-align: center;
+  border-radius: 1rem;
+  color: #fff;
+  margin: 0 auto;
+  right: 0;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.link.disabledbtn{
+  background: #6d5dfc;
+  box-shadow: inset 0.2rem 0.2rem 1rem #5b0eeb, inset -0.2rem -0.2rem 1rem #8abdff;
+  color: #fff;
 }

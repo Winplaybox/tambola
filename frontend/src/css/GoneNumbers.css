@@ -1,26 +1,28 @@
 div#gone-numbers-menu {
-  background-color: #070a0f;
   overflow-y: hidden;
-  overflow-x: auto;
-  white-space: nowrap;
-  display: none;
-  /* box-shadow: 0.8rem 0.8rem 1.4rem #c8d0e7, -0.2rem -0.2rem 1.8rem #fff; */
-  color: #000;
-  background-color: rgb(228 235 245/80%);
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
-  width: 80%;
+    overflow-x: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    padding-left: 0.5rem;
 }
 
 div#gone-numbers-menu > p {
-  color: #000000;
-  text-align: center;
-  padding: 1rem;
-  display: inline-block;
-  margin: 0;
-  font-size: 2rem;
-  position: relative;
-  box-shadow: inset 0.2rem 0.2rem 0.5rem #c8d0e7, inset -0.2rem -0.2rem 0.5rem #fff;
+  color: #000;
+    text-align: center;
+    width: 1rem;
+    height: 1rem;
+    display: flex;
+    margin: 0;
+    font-size: 1rem;
+    position: relative;
+    box-shadow: inset 0.2rem 0.2rem 0.5rem #c8d0e7, inset -0.2rem -0.2rem 0.5rem #fff;
+    margin: 0 0.25rem;
+    border-radius: 1rem;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
 }
 
 #gone-numbers-button {
@@ -33,11 +35,9 @@ div#gone-numbers-menu > p {
 }
 
 .gone-numbers-container {
-  width: 100%;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  margin-top: 2rem;
+  width: 94%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
 }
