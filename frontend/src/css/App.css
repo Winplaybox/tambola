@@ -761,10 +761,11 @@ table.ready-players {
 }
 
 .homeclick {
-  position: fixed;
+  /* position: fixed;
   top: 0;
   left: 0;
-  z-index: 1;
+  z-index: 1; */
+  margin-left: -1rem;
 }
 
 .homeclick a {
@@ -1034,16 +1035,72 @@ h1.players-in-game i {
 }
 
 .playerlist-rewards {
-  margin-left: 69px;
-  width: 75%;
-  overflow-x: auto;
-  overflow-y: hidden;
+  margin-left: 1rem;
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    box-shadow: 0.8rem 0.8rem 1.4rem #c8d0e7, -0.2rem -0.2rem 1.8rem #fff;
+    padding: 10px;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+    backdrop-filter: blur(8px);
+    background: rgb(228 235 245/72%);
 }
 
-.playerlist-rewards .ready-players  .userlist {
+section.connected-participants {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+  width: 100%;
+}
+div.pc-ticket .homeclick,.connected-participants .homeclick{
+  position: relative;
+  opacity: 1;
+  margin-left: 0;
+}
+.playerlist-rewards .ready-players {
+  box-shadow: none;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  padding-right: 1rem;
+}
+.playerlist-rewards .ready-players .userlist {
   flex-direction: row;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0.25rem;
+    border-radius: 80px;
+    padding: 0.2rem 1rem 0.2rem 0.35rem;
+    box-shadow: inset 0.2rem 0.2rem 0.5rem #c8d0e7, inset -0.2rem -0.2rem 0.5rem #fff;
+}
+.playerlist-rewards .ready-players .userlist .img-box {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background-color: #fff;
+  background-size: 80%;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.playerlist-rewards .ready-players .userlist.me {
+  box-shadow: 0.8rem 0.8rem 1.4rem #c8d0e7, -0.2rem -0.2rem 1.8rem #fff;
 }
 
+.playerlist-rewards .userlist:first-child {
+  margin-left: 0;
+}
+.playerlist-rewards .userlist:last-child {
+  margin-right: 0;
+}
 .playerlist-rewards .ready-players .userlist .text-box {
   max-width: 5rem;
   white-space: nowrap;
@@ -1052,6 +1109,18 @@ h1.players-in-game i {
   margin-left: 0.5rem;
 }
 
+.playerlist-rewards .ready-players .userlist .text-box small {
+  font-weight: 600;
+  line-height: 1.3;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.playerlist-rewards .ready-players .userlist .text-box .score-box {
+  display: flex;
+  font-size: .65rem;
+}
 .userlist .img-box {
   width: 1.8rem;
   height: 1.8rem;
@@ -1063,4 +1132,79 @@ h1.players-in-game i {
   box-sizing: border-box;
   cursor: pointer;
   box-shadow: inset 0.2rem 0.2rem 1rem #5b0eeb, inset -0.2rem -0.2rem 1rem #8abdff;
+}
+
+.claim-btn-holder {
+  position: relative;
+}
+
+.claim-btn-holder .btn {
+  width: 70px;
+  border-radius: 0;
+  padding: 0 10px 0 15px!important;
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+  -webkit-tap-highlight-color: transparent;
+  background: #6d5dfc;
+  box-shadow: inset 0.2rem 0.2rem 1rem #8abdff, inset -0.2rem -0.2rem 1rem #5b0eeb, 0.3rem 0.3rem 0.6rem #c8d0e7, -0.2rem -0.2rem 0.5rem #fff;
+  color: #fff;
+}
+
+.claim-btn-holder .btn:active, .claim-btn-holder .btn:hover {
+  box-shadow: inset 0.2rem 0.2rem 1rem #5b0eeb, inset -0.2rem -0.2rem 1rem #8abdff;
+  color: #fff;
+}
+
+.claim-btn-holder .btn .text {
+  margin-left: 5px;
+}
+
+.claim-btn-holder .claims-left {
+  position: absolute;
+  top: -15px;
+  width: 25px;
+  font-size: .8rem;
+  font-weight: 600;
+  background-color: #ff2929;
+  text-align: center;
+  border-radius: 1rem;
+  color: #fff;
+  margin: 0 auto;
+  left: 50%;
+  height: 25px;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.modalhead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  padding: 15px;
+  z-index: 1;
+}
+.claim-popup{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.claim-content{
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  background: rgb(228 235 245/72%);
+  height: 100%;
+}
+.modalhead  .btn.btn-popup-close {
+  width: 50px;
 }
