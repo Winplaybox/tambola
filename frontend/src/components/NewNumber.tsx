@@ -1,16 +1,22 @@
 import * as React from "react";
 import { Component } from "react";
+import _ from 'lodash';
 import GoneNumbers from "./GoneNumbers";
-import { PcStatus, CurrentUser } from "./Config";
+import { Award, CurrentUser } from "./Config";
+import settings from './utils/settings'
+
 interface NewNumberProps {
   socket: any;
   name: string;
   players: any;
   currentUser: CurrentUser[];
+  handleClaim: any;
+  awards: Award[]
 }
 
 interface NewNumberState {
   newNumber: number;
+  selectedSpeaker: any;
 }
 
 export interface newNumberObj_t {
@@ -21,7 +27,7 @@ class NewNumber extends Component<NewNumberProps, NewNumberState> {
   goneNumbers: Array<number>;
   constructor(props: NewNumberProps) {
     super(props);
-    this.state = { newNumber: 0 };
+    this.state = { newNumber: 0, selectedSpeaker: _.first(settings.availableSpeakersList), };
     this.goneNumbers = [];
   }
 
@@ -31,6 +37,9 @@ class NewNumber extends Component<NewNumberProps, NewNumberState> {
       (newNumberObj: newNumberObj_t) => {
         this.goneNumbers.push(newNumberObj.newNumber);
         this.setState({ newNumber: newNumberObj.newNumber });
+        // this.speakNumber(newNumberObj.newNumber);
+
+        console.log(`${newNumberObj.newNumber}.mp3`);
       }
     );
     if (window.ReactNativeWebView) {
@@ -38,8 +47,26 @@ class NewNumber extends Component<NewNumberProps, NewNumberState> {
         isPortrait: false
       }));
     }
-    console.log("players List: ", this.props.players)
+    console.log("players List: ", this.props.players, this.state.selectedSpeaker,this.state.selectedSpeaker['path'])
+
   }
+
+  // speakNumber = (num: number, onEndCallback = {}) => {
+  //   const audio = new Audio(`/audio/${this.state.selectedSpeaker['path']}/${num}.mp3`);
+  //   // audio.onended = onEndCallback;
+
+  //   const playedPromise = audio.play();
+  //   if (playedPromise) {
+  //     playedPromise.catch((e) => {
+  //       if (e.name === 'NotAllowedError' ||
+  //         e.name === 'NotSupportedError') {
+  //         console.log(e.name, e);
+  //       }
+  //     });
+  //   }
+
+  //   return audio;
+  // }
 
   // For generating random key for every render so that dom is manipulated every
   // single time for new render to display the animation
@@ -47,7 +74,7 @@ class NewNumber extends Component<NewNumberProps, NewNumberState> {
     return Math.random() * 10000;
   };
   playersComp = () => {
-    console.log('currentUser Array: ', this.props.currentUser)
+    console.log('currentUser Array: ', this.props.currentUser, this.props.awards)
     let arryplayersComp = [];
     for (let i = 0; i < this.props.players.length; ++i) {
       arryplayersComp.push(
@@ -65,28 +92,39 @@ class NewNumber extends Component<NewNumberProps, NewNumberState> {
     return arryplayersComp;
   }
 
+  awardsCount = () => {
+    let array = this.props.awards
+
+    let newarry = array.filter((item) => {
+      const newdata = `${item.numAward}`
+      return newdata !== '0'
+    })
+    console.log(newarry)
+    return newarry;
+  }
+
   render() {
 
     let newNumberComponent = (
       <>
         <section className="connected-participants">
-        <div className="homeclick">
-          <a href="/" style={{ color: "#000000", textDecoration: 'none' }} title="exit">
-            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none" /><path d="M10.79 16.29c.39.39 1.02.39 1.41 0l3.59-3.59c.39-.39.39-1.02 0-1.41L12.2 7.7c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41L12.67 11H4c-.55 0-1 .45-1 1s.45 1 1 1h8.67l-1.88 1.88c-.39.39-.38 1.03 0 1.41zM19 3H5c-1.11 0-2 .9-2 2v3c0 .55.45 1 1 1s1-.45 1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1H6c-.55 0-1-.45-1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1v3c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" /></svg>
-          </a>
-        </div>
-        {/* <div className="playerlist-rewards">
-          <div className="ready-players">
-            {this.playersComp()}
+          <div className="homeclick">
+            <a href="/" style={{ color: "#000000", textDecoration: 'none' }} title="exit">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none" /><path d="M10.79 16.29c.39.39 1.02.39 1.41 0l3.59-3.59c.39-.39.39-1.02 0-1.41L12.2 7.7c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41L12.67 11H4c-.55 0-1 .45-1 1s.45 1 1 1h8.67l-1.88 1.88c-.39.39-.38 1.03 0 1.41zM19 3H5c-1.11 0-2 .9-2 2v3c0 .55.45 1 1 1s1-.45 1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1H6c-.55 0-1-.45-1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1v3c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" /></svg>
+            </a>
           </div>
-        </div> */}
-        {/* <div className="claim-btn-holder">
-          <button className="btn btn_primary">
-            <i className="fa fa-trophy"></i>
-            <span className="text">Claim</span>
-          </button>
-          <div className="claims-left">11</div>
-        </div> */}
+          <div className="playerlist-rewards">
+            <div className="ready-players">
+              {this.playersComp()}
+            </div>
+          </div>
+          <div className="claim-btn-holder">
+            <button className="btn btn_primary" onClick={() => this.props.handleClaim(true)}>
+              <i className="fa fa-trophy"></i>
+              <span className="text">Claim</span>
+            </button>
+            <div className="claims-left">{this.awardsCount()}</div>
+          </div>
         </section>
         <div className="wrapgennumber">
           <div
@@ -101,6 +139,8 @@ class NewNumber extends Component<NewNumberProps, NewNumberState> {
           <span className="circle__back-2"></span>
         </div>
         <GoneNumbers numbers={this.goneNumbers} />
+
+
       </>
     );
     return newNumberComponent;

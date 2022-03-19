@@ -6,17 +6,17 @@ import { generateTicket } from "../utils/utils";
 import WinningButtons from "./WinningButtons";
 import NewNumber from "./NewNumber";
 import Notification from "./Notification";
-import { Award,PcStatus,CurrentUser } from "./Config";
+import { Award, PcStatus, CurrentUser } from "./Config";
 import Waiting from "./Waiting";
 import Timer from "./Timer";
 
 interface PcTicketProps {
   socket: any;
-  name:string;
+  name: string;
   // awards coming for winning buttons
   awards: Award[];
-  players:PcStatus[];
-  currentUser:CurrentUser[]
+  players: PcStatus[];
+  currentUser: CurrentUser[]
 
   // number of houses
   numHouses: number;
@@ -26,6 +26,7 @@ interface PcTicketProps {
 
 interface PcTicketState {
   showTimer: boolean;
+  isModalOpen: boolean;
 }
 
 class PcTicket extends Component<PcTicketProps, PcTicketState> {
@@ -33,7 +34,7 @@ class PcTicket extends Component<PcTicketProps, PcTicketState> {
   constructor(props: PcTicketProps) {
     super(props);
     this.houses = generateTicket(this.props.numHouses);
-    this.state = { showTimer: false };
+    this.state = { showTimer: false, isModalOpen: false };
   }
   componentDidMount() {
     this.props.socket.on("showTimer", () => {
@@ -71,6 +72,12 @@ class PcTicket extends Component<PcTicketProps, PcTicketState> {
       winCallBack={this.handleWinningCall}
     />
   );
+  handleClaim = (val: any) => {
+    console.log('claim', val)
+    this.setState({
+      isModalOpen: val
+    })
+  }
 
   render() {
     let timer = null;
@@ -80,7 +87,7 @@ class PcTicket extends Component<PcTicketProps, PcTicketState> {
 
     return (
       <div className="pc-ticket">
-        <NewNumber socket={this.props.socket} name={this.props.name} players={this.props.players} currentUser={this.props.currentUser}/>
+        <NewNumber socket={this.props.socket} name={this.props.name} players={this.props.players} currentUser={this.props.currentUser} handleClaim={this.handleClaim} awards={this.props.awards} />
         {timer}
         <Waiting playerType="PC" socket={this.props.socket} />
         <div className="notification-parent">
@@ -96,7 +103,28 @@ class PcTicket extends Component<PcTicketProps, PcTicketState> {
           <Notification socket={this.props.socket} type="Pc" />
         </div>
 
-        {this.winningButtons}
+
+
+        {
+          this.state.isModalOpen ? <div className="claim-popup">
+            <div className="claim-content">
+              <div className="modalhead">
+                <h3 style={{ color: "#000000", textTransform: 'uppercase' }}>claim  prizes</h3>
+                <button
+                  className="btn btn-popup-close"
+                  onClick={() => {
+                    this.setState({ isModalOpen: false });
+                  }}
+                >
+                  <i className="fa fa-close"></i>
+                </button>
+              </div>
+              <div className="modalbody">
+                {this.winningButtons}
+              </div>
+            </div>
+          </div> : null
+        }
       </div>
     );
   }
