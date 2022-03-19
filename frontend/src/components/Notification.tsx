@@ -86,7 +86,7 @@ class Notification extends Component<NotificationProps, NotificationState> {
       </div>
     ) : null;
     return (
-      <>
+      <div className={this.state.notificationObj?"rewardwrapper":''}>
         {notificationComp}
         <Reward
           ref={(ref: any) => {
@@ -101,7 +101,7 @@ class Notification extends Component<NotificationProps, NotificationState> {
             lifetime: 150,
           }}
         ></Reward>
-      </>
+      </div>
     );
   }
 }

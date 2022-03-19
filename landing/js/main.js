@@ -77,4 +77,11 @@ window.onload = function () {
       appUrl:'www.google.com'
     }));
   }
+
+  //ads footer
+  if (window.ReactNativeWebView) {
+    window.ReactNativeWebView.postMessage(JSON.stringify({
+      footerAds: true,
+    }));
+  }
 };

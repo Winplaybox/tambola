@@ -59,9 +59,9 @@ function ConfigTable(props: ConfigTableProps) {
         </tbody>
       </table>
       <div className="buttons-container">
-        <button className="add-row btn btn__primary" type="button" onClick={props.handleAddRow}>
+        {/* <button className="add-row btn btn__primary" type="button" onClick={props.handleAddRow}>
           Add Award
-        </button>
+        </button> */}
         <button className="start-game btn" type="submit">
           Start Game
         </button>
