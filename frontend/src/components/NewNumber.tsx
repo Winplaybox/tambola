@@ -56,7 +56,9 @@ class NewNumber extends Component<NewNumberProps, NewNumberState> {
         footerAds: false,
       }));
     }
-
+    if(window.innerHeight > window.innerWidth){
+      alert('Please rotate/view in landscape')
+      }
     console.log("players List: ", this.props.players, this.state.selectedSpeaker, this.state.selectedSpeaker['path'])
   }
 
