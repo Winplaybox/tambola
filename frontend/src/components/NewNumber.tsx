@@ -50,6 +50,13 @@ class NewNumber extends Component<NewNumberProps, NewNumberState> {
         isPortrait: false
       }));
     }
+    //ads footer
+    if (window.ReactNativeWebView) {
+      window.ReactNativeWebView.postMessage(JSON.stringify({
+        footerAds: false,
+      }));
+    }
+
     console.log("players List: ", this.props.players, this.state.selectedSpeaker, this.state.selectedSpeaker['path'])
   }
 
@@ -58,7 +65,7 @@ class NewNumber extends Component<NewNumberProps, NewNumberState> {
   }
 
   speakNumber = (num: number) => {
-    let audio = new Audio(settings.audio(this.state.selectedSpeaker['path'],num));
+    let audio = new Audio(settings.audio(this.state.selectedSpeaker['path'], num));
     audio.onended = this.onEndCallback;
 
     let playedPromise = audio.play();

@@ -70,4 +70,11 @@ window.onload = function () {
       isPortrait: true
     }));
   }
+  //Check Update
+  if (window.ReactNativeWebView) {
+    window.ReactNativeWebView.postMessage(JSON.stringify({
+      updateVersion: 1,
+      appUrl:'www.google.com'
+    }));
+  }
 };
